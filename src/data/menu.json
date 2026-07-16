@@ -1,0 +1,1283 @@
+{
+  "brand": "Songolo Fast-Food",
+  "whatsappNumber": "242060000000",
+  "address": "Songolo, Pointe-Noire",
+  "rating": 9.2,
+  "deliveryTime": "30-50 min",
+  "hours": "10:00 - 22:00",
+  "tagline": "Le meilleur fast-food de Songolo, Pointe-Noire.",
+  "banners": [
+    {
+      "id": "b1",
+      "title": "Nouvelle Formule\nGironde XXL !",
+      "cta": "Commander",
+      "bg": "#FF6B2C",
+      "image": "/assets/promos/formulexxxl-tacos-gironde.jpg"
+    }
+  ],
+  "categories": [
+    {
+      "id": "fastfood",
+      "label": "Fast-Food",
+      "emoji": "🍔",
+      "count": "7 plats",
+      "items": [
+        {
+          "id": "tacos-poulet",
+          "name": "Tacos Poulet",
+          "description": "Tacos généreux au poulet mariné, frites et sauce fromagère",
+          "price": 2500,
+          "emoji": "🌮",
+          "image": "/assets/products/tacos-poulet.jpg",
+          "type": "complex",
+          "optionGroups": [
+            {
+              "id": "taille",
+              "title": "Taille",
+              "type": "single",
+              "required": true,
+              "options": [
+                {
+                  "id": "normal",
+                  "label": "Normal",
+                  "price": 0
+                },
+                {
+                  "id": "maxi",
+                  "label": "Maxi",
+                  "price": 500
+                },
+                {
+                  "id": "mega",
+                  "label": "Mega",
+                  "price": 1000
+                }
+              ]
+            },
+            {
+              "id": "sauces",
+              "title": "Choisissez vos sauces (Max 2)",
+              "type": "multiple",
+              "max": 2,
+              "options": [
+                {
+                  "id": "algerienne",
+                  "label": "Algérienne",
+                  "price": 0
+                },
+                {
+                  "id": "samourai",
+                  "label": "Samouraï",
+                  "price": 0
+                },
+                {
+                  "id": "blanche",
+                  "label": "Blanche",
+                  "price": 0
+                },
+                {
+                  "id": "burger",
+                  "label": "Burger",
+                  "price": 0
+                }
+              ]
+            },
+            {
+              "id": "supplements",
+              "title": "Ajouter des suppléments",
+              "type": "multiple",
+              "options": [
+                {
+                  "id": "fromagere",
+                  "label": "Sauce Fromagère",
+                  "price": 200
+                },
+                {
+                  "id": "cheddar",
+                  "label": "Tranche Cheddar",
+                  "price": 300
+                },
+                {
+                  "id": "oeuf",
+                  "label": "Œuf",
+                  "price": 200
+                },
+                {
+                  "id": "viande",
+                  "label": "Double Viande",
+                  "price": 800
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "tacos-viandes",
+          "name": "Tacos Viandes",
+          "description": "Tacos multiviandes avec sauce maison",
+          "price": 3000,
+          "emoji": "🌮",
+          "image": "/assets/products/tacos-viandes.jpg",
+          "type": "complex",
+          "optionGroups": [
+            {
+              "id": "taille",
+              "title": "Taille",
+              "type": "single",
+              "required": true,
+              "options": [
+                {
+                  "id": "normal",
+                  "label": "Normal",
+                  "price": 0
+                },
+                {
+                  "id": "maxi",
+                  "label": "Maxi",
+                  "price": 500
+                },
+                {
+                  "id": "mega",
+                  "label": "Mega",
+                  "price": 1000
+                }
+              ]
+            },
+            {
+              "id": "sauces",
+              "title": "Choisissez vos sauces (Max 2)",
+              "type": "multiple",
+              "max": 2,
+              "options": [
+                {
+                  "id": "algerienne",
+                  "label": "Algérienne",
+                  "price": 0
+                },
+                {
+                  "id": "samourai",
+                  "label": "Samouraï",
+                  "price": 0
+                },
+                {
+                  "id": "blanche",
+                  "label": "Blanche",
+                  "price": 0
+                },
+                {
+                  "id": "burger",
+                  "label": "Burger",
+                  "price": 0
+                }
+              ]
+            },
+            {
+              "id": "supplements",
+              "title": "Ajouter des suppléments",
+              "type": "multiple",
+              "options": [
+                {
+                  "id": "fromagere",
+                  "label": "Sauce Fromagère",
+                  "price": 200
+                },
+                {
+                  "id": "cheddar",
+                  "label": "Tranche Cheddar",
+                  "price": 300
+                },
+                {
+                  "id": "oeuf",
+                  "label": "Œuf",
+                  "price": 200
+                },
+                {
+                  "id": "viande",
+                  "label": "Double Viande",
+                  "price": 800
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "tacos-sphere",
+          "name": "Tacos Sphère",
+          "description": "Le fameux Tacos signature",
+          "price": 3500,
+          "emoji": "🌮",
+          "image": "/assets/products/tacos-sphère.jpg",
+          "type": "complex",
+          "tag": "Signature",
+          "optionGroups": [
+            {
+              "id": "taille",
+              "title": "Taille",
+              "type": "single",
+              "required": true,
+              "options": [
+                {
+                  "id": "normal",
+                  "label": "Normal",
+                  "price": 0
+                },
+                {
+                  "id": "maxi",
+                  "label": "Maxi",
+                  "price": 500
+                },
+                {
+                  "id": "mega",
+                  "label": "Mega",
+                  "price": 1000
+                }
+              ]
+            },
+            {
+              "id": "sauces",
+              "title": "Choisissez vos sauces (Max 2)",
+              "type": "multiple",
+              "max": 2,
+              "options": [
+                {
+                  "id": "algerienne",
+                  "label": "Algérienne",
+                  "price": 0
+                },
+                {
+                  "id": "samourai",
+                  "label": "Samouraï",
+                  "price": 0
+                },
+                {
+                  "id": "blanche",
+                  "label": "Blanche",
+                  "price": 0
+                },
+                {
+                  "id": "burger",
+                  "label": "Burger",
+                  "price": 0
+                }
+              ]
+            },
+            {
+              "id": "supplements",
+              "title": "Ajouter des suppléments",
+              "type": "multiple",
+              "options": [
+                {
+                  "id": "fromagere",
+                  "label": "Sauce Fromagère",
+                  "price": 200
+                },
+                {
+                  "id": "cheddar",
+                  "label": "Tranche Cheddar",
+                  "price": 300
+                },
+                {
+                  "id": "oeuf",
+                  "label": "Œuf",
+                  "price": 200
+                },
+                {
+                  "id": "viande",
+                  "label": "Double Viande",
+                  "price": 800
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "sandwich-poulet",
+          "name": "Sandwich Poulet",
+          "description": "Sandwich au poulet frais et crudités",
+          "price": 2000,
+          "emoji": "🥪",
+          "image": "/assets/products/sandwich-poulet.webp",
+          "type": "complex",
+          "optionGroups": [
+            {
+              "id": "sauces",
+              "title": "Choisissez vos sauces (Max 2)",
+              "type": "multiple",
+              "max": 2,
+              "options": [
+                {
+                  "id": "algerienne",
+                  "label": "Algérienne",
+                  "price": 0
+                },
+                {
+                  "id": "samourai",
+                  "label": "Samouraï",
+                  "price": 0
+                },
+                {
+                  "id": "blanche",
+                  "label": "Blanche",
+                  "price": 0
+                },
+                {
+                  "id": "burger",
+                  "label": "Burger",
+                  "price": 0
+                }
+              ]
+            },
+            {
+              "id": "supplements",
+              "title": "Ajouter des suppléments",
+              "type": "multiple",
+              "options": [
+                {
+                  "id": "fromagere",
+                  "label": "Sauce Fromagère",
+                  "price": 200
+                },
+                {
+                  "id": "cheddar",
+                  "label": "Tranche Cheddar",
+                  "price": 300
+                },
+                {
+                  "id": "oeuf",
+                  "label": "Œuf",
+                  "price": 200
+                },
+                {
+                  "id": "viande",
+                  "label": "Double Viande",
+                  "price": 800
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "sandwich-steak",
+          "name": "Sandwich Steak",
+          "description": "Sandwich savoureux au steak haché",
+          "price": 2500,
+          "emoji": "🥪",
+          "image": "/assets/products/sandwich-steak.png",
+          "type": "complex",
+          "optionGroups": [
+            {
+              "id": "sauces",
+              "title": "Choisissez vos sauces (Max 2)",
+              "type": "multiple",
+              "max": 2,
+              "options": [
+                {
+                  "id": "algerienne",
+                  "label": "Algérienne",
+                  "price": 0
+                },
+                {
+                  "id": "samourai",
+                  "label": "Samouraï",
+                  "price": 0
+                },
+                {
+                  "id": "blanche",
+                  "label": "Blanche",
+                  "price": 0
+                },
+                {
+                  "id": "burger",
+                  "label": "Burger",
+                  "price": 0
+                }
+              ]
+            },
+            {
+              "id": "supplements",
+              "title": "Ajouter des suppléments",
+              "type": "multiple",
+              "options": [
+                {
+                  "id": "fromagere",
+                  "label": "Sauce Fromagère",
+                  "price": 200
+                },
+                {
+                  "id": "cheddar",
+                  "label": "Tranche Cheddar",
+                  "price": 300
+                },
+                {
+                  "id": "oeuf",
+                  "label": "Œuf",
+                  "price": 200
+                },
+                {
+                  "id": "viande",
+                  "label": "Double Viande",
+                  "price": 800
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "sandwich-mixte",
+          "name": "Sandwich Mixte",
+          "description": "Mélange parfait de viandes en sandwich",
+          "price": 3000,
+          "emoji": "🥪",
+          "image": "/assets/products/sandwich-mixte.jpg",
+          "type": "complex",
+          "optionGroups": [
+            {
+              "id": "sauces",
+              "title": "Choisissez vos sauces (Max 2)",
+              "type": "multiple",
+              "max": 2,
+              "options": [
+                {
+                  "id": "algerienne",
+                  "label": "Algérienne",
+                  "price": 0
+                },
+                {
+                  "id": "samourai",
+                  "label": "Samouraï",
+                  "price": 0
+                },
+                {
+                  "id": "blanche",
+                  "label": "Blanche",
+                  "price": 0
+                },
+                {
+                  "id": "burger",
+                  "label": "Burger",
+                  "price": 0
+                }
+              ]
+            },
+            {
+              "id": "supplements",
+              "title": "Ajouter des suppléments",
+              "type": "multiple",
+              "options": [
+                {
+                  "id": "fromagere",
+                  "label": "Sauce Fromagère",
+                  "price": 200
+                },
+                {
+                  "id": "cheddar",
+                  "label": "Tranche Cheddar",
+                  "price": 300
+                },
+                {
+                  "id": "oeuf",
+                  "label": "Œuf",
+                  "price": 200
+                },
+                {
+                  "id": "viande",
+                  "label": "Double Viande",
+                  "price": 800
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "boxe-sandwich",
+          "name": "Boîte Sandwich",
+          "description": "Délicieux sandwich en boîte avec frites",
+          "price": 3500,
+          "emoji": "🍱",
+          "image": "/assets/products/boxe-sandwich.jpeg",
+          "type": "complex",
+          "optionGroups": [
+            {
+              "id": "sauces",
+              "title": "Choisissez vos sauces (Max 2)",
+              "type": "multiple",
+              "max": 2,
+              "options": [
+                {
+                  "id": "algerienne",
+                  "label": "Algérienne",
+                  "price": 0
+                },
+                {
+                  "id": "samourai",
+                  "label": "Samouraï",
+                  "price": 0
+                },
+                {
+                  "id": "blanche",
+                  "label": "Blanche",
+                  "price": 0
+                },
+                {
+                  "id": "burger",
+                  "label": "Burger",
+                  "price": 0
+                }
+              ]
+            },
+            {
+              "id": "supplements",
+              "title": "Ajouter des suppléments",
+              "type": "multiple",
+              "options": [
+                {
+                  "id": "fromagere",
+                  "label": "Sauce Fromagère",
+                  "price": 200
+                },
+                {
+                  "id": "cheddar",
+                  "label": "Tranche Cheddar",
+                  "price": 300
+                },
+                {
+                  "id": "oeuf",
+                  "label": "Œuf",
+                  "price": 200
+                },
+                {
+                  "id": "viande",
+                  "label": "Double Viande",
+                  "price": 800
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "salades",
+      "label": "Salades",
+      "emoji": "🥗",
+      "count": "4 plats",
+      "items": [
+        {
+          "id": "salade-cesar",
+          "name": "Salade César",
+          "description": "Salade croquante, poulet, parmesan et sauce césar",
+          "price": 2500,
+          "emoji": "🥗",
+          "image": "/assets/products/salade-cesar.webp",
+          "type": "complex",
+          "optionGroups": [
+            {
+              "id": "vinaigrette",
+              "title": "Vinaigrette",
+              "type": "single",
+              "required": true,
+              "options": [
+                {
+                  "id": "balsamique",
+                  "label": "Balsamique",
+                  "price": 0
+                },
+                {
+                  "id": "cesar",
+                  "label": "César",
+                  "price": 0
+                },
+                {
+                  "id": "citron",
+                  "label": "Citron Huile d'olive",
+                  "price": 0
+                }
+              ]
+            },
+            {
+              "id": "supplements-salade",
+              "title": "Extras",
+              "type": "multiple",
+              "options": [
+                {
+                  "id": "poulet",
+                  "label": "Poulet grillé",
+                  "price": 500
+                },
+                {
+                  "id": "parmesan",
+                  "label": "Parmesan",
+                  "price": 300
+                },
+                {
+                  "id": "croutons",
+                  "label": "Croûtons",
+                  "price": 150
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "salade-gironde",
+          "name": "Salade Gironde",
+          "description": "Salade composée signature de la maison",
+          "price": 3000,
+          "emoji": "🥗",
+          "image": "/assets/products/salade-gironde.jpg",
+          "type": "complex",
+          "tag": "Nouveau",
+          "optionGroups": [
+            {
+              "id": "vinaigrette",
+              "title": "Vinaigrette",
+              "type": "single",
+              "required": true,
+              "options": [
+                {
+                  "id": "balsamique",
+                  "label": "Balsamique",
+                  "price": 0
+                },
+                {
+                  "id": "cesar",
+                  "label": "César",
+                  "price": 0
+                },
+                {
+                  "id": "citron",
+                  "label": "Citron Huile d'olive",
+                  "price": 0
+                }
+              ]
+            },
+            {
+              "id": "supplements-salade",
+              "title": "Extras",
+              "type": "multiple",
+              "options": [
+                {
+                  "id": "poulet",
+                  "label": "Poulet grillé",
+                  "price": 500
+                },
+                {
+                  "id": "parmesan",
+                  "label": "Parmesan",
+                  "price": 300
+                },
+                {
+                  "id": "croutons",
+                  "label": "Croûtons",
+                  "price": 150
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "salade-poulet",
+          "name": "Salade Poulet",
+          "description": "Délicieuse salade au poulet rôti",
+          "price": 2500,
+          "emoji": "🥗",
+          "image": "/assets/products/salade-poulet.webp",
+          "type": "complex",
+          "optionGroups": [
+            {
+              "id": "vinaigrette",
+              "title": "Vinaigrette",
+              "type": "single",
+              "required": true,
+              "options": [
+                {
+                  "id": "balsamique",
+                  "label": "Balsamique",
+                  "price": 0
+                },
+                {
+                  "id": "cesar",
+                  "label": "César",
+                  "price": 0
+                },
+                {
+                  "id": "citron",
+                  "label": "Citron Huile d'olive",
+                  "price": 0
+                }
+              ]
+            },
+            {
+              "id": "supplements-salade",
+              "title": "Extras",
+              "type": "multiple",
+              "options": [
+                {
+                  "id": "poulet",
+                  "label": "Poulet grillé",
+                  "price": 500
+                },
+                {
+                  "id": "parmesan",
+                  "label": "Parmesan",
+                  "price": 300
+                },
+                {
+                  "id": "croutons",
+                  "label": "Croûtons",
+                  "price": 150
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "salade",
+          "name": "Salade Simple",
+          "description": "Salade végétarienne fraîche du jour",
+          "price": 1500,
+          "emoji": "🥗",
+          "image": "/assets/products/salade.webp",
+          "type": "complex",
+          "optionGroups": [
+            {
+              "id": "vinaigrette",
+              "title": "Vinaigrette",
+              "type": "single",
+              "required": true,
+              "options": [
+                {
+                  "id": "balsamique",
+                  "label": "Balsamique",
+                  "price": 0
+                },
+                {
+                  "id": "cesar",
+                  "label": "César",
+                  "price": 0
+                },
+                {
+                  "id": "citron",
+                  "label": "Citron Huile d'olive",
+                  "price": 0
+                }
+              ]
+            },
+            {
+              "id": "supplements-salade",
+              "title": "Extras",
+              "type": "multiple",
+              "options": [
+                {
+                  "id": "poulet",
+                  "label": "Poulet grillé",
+                  "price": 500
+                },
+                {
+                  "id": "parmesan",
+                  "label": "Parmesan",
+                  "price": 300
+                },
+                {
+                  "id": "croutons",
+                  "label": "Croûtons",
+                  "price": 150
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "formules",
+      "label": "Formules & Menus",
+      "emoji": "🍟",
+      "count": "6 formules",
+      "items": [
+        {
+          "id": "formule-gironde",
+          "name": "Formule Gironde",
+          "description": "Un repas complet pour les gourmands",
+          "price": 5000,
+          "emoji": "🍟",
+          "image": "/assets/promos/formule-gironde.webp",
+          "type": "complex",
+          "tag": "Populaire",
+          "optionGroups": []
+        },
+        {
+          "id": "formule-burger",
+          "name": "Formule Burger",
+          "description": "Burger, frites et boisson",
+          "price": 4000,
+          "emoji": "🍔",
+          "image": "/assets/promos/formule-burger.webp",
+          "type": "complex",
+          "optionGroups": []
+        },
+        {
+          "id": "formule-burger-sandwich",
+          "name": "Formule Burger & Sandwich",
+          "description": "Le duo parfait à partager",
+          "price": 6500,
+          "emoji": "🥪",
+          "image": "/assets/promos/formule-burger-sandwich.webp",
+          "type": "complex",
+          "optionGroups": []
+        },
+        {
+          "id": "formule-xxl",
+          "name": "Formule XXL",
+          "description": "Pour les très grosses faims",
+          "price": 7500,
+          "emoji": "🔥",
+          "image": "/assets/promos/formule-xxl.jpg",
+          "type": "complex",
+          "optionGroups": []
+        },
+        {
+          "id": "formules-quatre-personne",
+          "name": "Formule 4 Personnes",
+          "description": "Le menu idéal pour la famille ou les amis",
+          "price": 15000,
+          "emoji": "👨‍👩‍👧‍👦",
+          "image": "/assets/promos/formules-quatre-personne.jpg",
+          "type": "complex",
+          "optionGroups": []
+        },
+        {
+          "id": "formulexxxl-tacos",
+          "name": "Formule XXXL Tacos",
+          "description": "Le Tacos géant façon Gironde",
+          "price": 8000,
+          "emoji": "🌮",
+          "image": "/assets/promos/formulexxxl-tacos-gironde.jpg",
+          "type": "complex",
+          "optionGroups": []
+        }
+      ]
+    },
+    {
+      "id": "douceurs",
+      "label": "Douceurs",
+      "emoji": "🥞",
+      "count": "2 plats",
+      "items": [
+        {
+          "id": "crepes-fraise",
+          "name": "Crêpe aux Fraises",
+          "description": "Crêpe gourmande aux fraises fraîches",
+          "price": 1500,
+          "emoji": "🍓",
+          "image": "/assets/products/crepes-fraise.webp",
+          "type": "complex",
+          "optionGroups": [
+            {
+              "id": "nappage",
+              "title": "Nappage",
+              "type": "multiple",
+              "options": [
+                {
+                  "id": "nutella",
+                  "label": "Nutella",
+                  "price": 200
+                },
+                {
+                  "id": "caramel",
+                  "label": "Caramel beurre salé",
+                  "price": 200
+                },
+                {
+                  "id": "fraise",
+                  "label": "Coulis Fraise",
+                  "price": 150
+                }
+              ]
+            },
+            {
+              "id": "extra-sucre",
+              "title": "Extras Gourmands",
+              "type": "multiple",
+              "options": [
+                {
+                  "id": "chantilly",
+                  "label": "Chantilly",
+                  "price": 200
+                },
+                {
+                  "id": "glace",
+                  "label": "Boule de glace vanille",
+                  "price": 350
+                },
+                {
+                  "id": "amandes",
+                  "label": "Amandes effilées",
+                  "price": 150
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "crepes-simple",
+          "name": "Crêpe Simple",
+          "description": "Crêpe nature ou sucrée",
+          "price": 1000,
+          "emoji": "🥞",
+          "image": "/assets/products/crepes-simple.webp",
+          "type": "complex",
+          "optionGroups": [
+            {
+              "id": "nappage",
+              "title": "Nappage",
+              "type": "multiple",
+              "options": [
+                {
+                  "id": "nutella",
+                  "label": "Nutella",
+                  "price": 200
+                },
+                {
+                  "id": "caramel",
+                  "label": "Caramel beurre salé",
+                  "price": 200
+                },
+                {
+                  "id": "fraise",
+                  "label": "Coulis Fraise",
+                  "price": 150
+                }
+              ]
+            },
+            {
+              "id": "extra-sucre",
+              "title": "Extras Gourmands",
+              "type": "multiple",
+              "options": [
+                {
+                  "id": "chantilly",
+                  "label": "Chantilly",
+                  "price": 200
+                },
+                {
+                  "id": "glace",
+                  "label": "Boule de glace vanille",
+                  "price": 350
+                },
+                {
+                  "id": "amandes",
+                  "label": "Amandes effilées",
+                  "price": 150
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "boissons",
+      "label": "Boissons",
+      "emoji": "🥤",
+      "count": "5 boissons",
+      "items": [
+        {
+          "id": "cocktail-fruit",
+          "name": "Cocktail de Fruits",
+          "description": "Mélange exotique de fruits de saison",
+          "price": 2000,
+          "emoji": "🍹",
+          "image": "/assets/promos/cocktail-fruit.webp",
+          "type": "complex",
+          "optionGroups": [
+            {
+              "id": "taille",
+              "title": "Choisissez la taille",
+              "type": "single",
+              "required": true,
+              "options": [
+                {
+                  "id": "normal",
+                  "label": "Normal (33cl)",
+                  "price": 0
+                },
+                {
+                  "id": "moyen",
+                  "label": "Moyen (50cl)",
+                  "price": 500
+                },
+                {
+                  "id": "grand",
+                  "label": "Grand (1L)",
+                  "price": 1500
+                }
+              ]
+            },
+            {
+              "id": "sucre",
+              "title": "Niveau de sucre",
+              "type": "single",
+              "required": true,
+              "options": [
+                {
+                  "id": "normal",
+                  "label": "Normal",
+                  "price": 0
+                },
+                {
+                  "id": "peu",
+                  "label": "Peu sucré",
+                  "price": 0
+                },
+                {
+                  "id": "sans",
+                  "label": "Sans sucre",
+                  "price": 0
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "jus-de-fruits",
+          "name": "Jus de Fruits",
+          "description": "Jus de fruits frais pressés",
+          "price": 1500,
+          "emoji": "🧃",
+          "image": "/assets/products/jus-de-fruits.webp",
+          "type": "complex",
+          "optionGroups": [
+            {
+              "id": "taille",
+              "title": "Choisissez la taille",
+              "type": "single",
+              "required": true,
+              "options": [
+                {
+                  "id": "normal",
+                  "label": "Normal (33cl)",
+                  "price": 0
+                },
+                {
+                  "id": "moyen",
+                  "label": "Moyen (50cl)",
+                  "price": 500
+                },
+                {
+                  "id": "grand",
+                  "label": "Grand (1L)",
+                  "price": 1500
+                }
+              ]
+            },
+            {
+              "id": "sucre",
+              "title": "Niveau de sucre",
+              "type": "single",
+              "required": true,
+              "options": [
+                {
+                  "id": "normal",
+                  "label": "Normal",
+                  "price": 0
+                },
+                {
+                  "id": "peu",
+                  "label": "Peu sucré",
+                  "price": 0
+                },
+                {
+                  "id": "sans",
+                  "label": "Sans sucre",
+                  "price": 0
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "jus-de-fruits-local",
+          "name": "Jus Local",
+          "description": "Délicieux jus de fruits locaux",
+          "price": 1000,
+          "emoji": "🥭",
+          "image": "/assets/promos/jus-de-fruits-local.jpg",
+          "type": "complex",
+          "optionGroups": [
+            {
+              "id": "taille",
+              "title": "Choisissez la taille",
+              "type": "single",
+              "required": true,
+              "options": [
+                {
+                  "id": "normal",
+                  "label": "Normal (33cl)",
+                  "price": 0
+                },
+                {
+                  "id": "moyen",
+                  "label": "Moyen (50cl)",
+                  "price": 500
+                },
+                {
+                  "id": "grand",
+                  "label": "Grand (1L)",
+                  "price": 1500
+                }
+              ]
+            },
+            {
+              "id": "sucre",
+              "title": "Niveau de sucre",
+              "type": "single",
+              "required": true,
+              "options": [
+                {
+                  "id": "normal",
+                  "label": "Normal",
+                  "price": 0
+                },
+                {
+                  "id": "peu",
+                  "label": "Peu sucré",
+                  "price": 0
+                },
+                {
+                  "id": "sans",
+                  "label": "Sans sucre",
+                  "price": 0
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "boissons-frais",
+          "name": "Boissons Fraîches",
+          "description": "Canettes et sodas bien frais",
+          "price": 800,
+          "emoji": "🥤",
+          "image": "/assets/promos/boissons-frais.jpeg",
+          "type": "complex",
+          "optionGroups": [
+            {
+              "id": "taille",
+              "title": "Choisissez la taille",
+              "type": "single",
+              "required": true,
+              "options": [
+                {
+                  "id": "normal",
+                  "label": "Normal (33cl)",
+                  "price": 0
+                },
+                {
+                  "id": "moyen",
+                  "label": "Moyen (50cl)",
+                  "price": 500
+                },
+                {
+                  "id": "grand",
+                  "label": "Grand (1L)",
+                  "price": 1500
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "formule-boissons-fruits",
+          "name": "Pack Boissons Fraîches",
+          "description": "Assortiment de boissons fruitées",
+          "price": 3000,
+          "emoji": "🥤",
+          "image": "/assets/promos/formule-boissons-de-fruits-frais.webp",
+          "type": "complex",
+          "optionGroups": [
+            {
+              "id": "taille",
+              "title": "Choisissez la taille",
+              "type": "single",
+              "required": true,
+              "options": [
+                {
+                  "id": "normal",
+                  "label": "Normal (33cl)",
+                  "price": 0
+                },
+                {
+                  "id": "moyen",
+                  "label": "Moyen (50cl)",
+                  "price": 500
+                },
+                {
+                  "id": "grand",
+                  "label": "Grand (1L)",
+                  "price": 1500
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "recommendations": [
+    {
+      "id": "tacos-poulet",
+      "name": "Tacos Poulet",
+      "price": 2500,
+      "emoji": "🌮",
+      "image": "/assets/products/tacos-poulet.jpg"
+    },
+    {
+      "id": "formule-gironde",
+      "name": "Formule Gironde",
+      "price": 5000,
+      "emoji": "🍟",
+      "image": "/assets/promos/formule-gironde.webp"
+    },
+    {
+      "id": "salade-cesar",
+      "name": "Salade César",
+      "price": 2500,
+      "emoji": "🥗",
+      "image": "/assets/products/salade-cesar.webp"
+    }
+  ],
+  "popularSearchTags": [
+    "burger",
+    "tacos",
+    "sandwich",
+    "jus",
+    "crépe",
+    "poulet",
+    "gironde",
+    "formule",
+    "salade"
+  ],
+  "deliveryZones": [
+    {
+      "id": "songolo",
+      "label": "Songolo",
+      "fee": 500
+    },
+    {
+      "id": "centre-ville",
+      "label": "Centre-ville",
+      "fee": 1000
+    },
+    {
+      "id": "total-marche",
+      "label": "Total / Grand Marché",
+      "fee": 1500
+    },
+    {
+      "id": "autre",
+      "label": "Autre quartier",
+      "fee": 2000
+    }
+  ]
+}
