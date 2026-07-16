@@ -13,6 +13,7 @@ import Detail from "./components/Detail";
 import OrderScreen from "./components/OrderScreen";
 import Checkout from "./components/Checkout";
 import BottomNav from "./components/BottomNav";
+import InstallPrompt from "./components/InstallPrompt";
 
 function Shell() {
   const [splashDone, setSplashDone] = useState(false);
@@ -99,6 +100,7 @@ function Shell() {
 
   return (
     <div className="relative min-h-screen bg-white">
+      <InstallPrompt />
       {renderTab()}
       {renderModal()}
       {!modal && <BottomNav active={tab} onNavigate={setTab} />}
