@@ -40,7 +40,8 @@ export default function PromoPage({ onOpenItem }) {
       <div className="px-5 mb-6">
         <div className="relative h-56 w-full rounded-3xl overflow-hidden shadow-xl bg-black animate-fade-up">
           <video 
-            src="https://cdn.pixabay.com/video/2021/04/23/71953-541571477_tiny.mp4" 
+            src="/assets/promos/promo-banner.mp4" 
+            poster="/assets/promos/promo-banner-poster.png"
             autoPlay 
             loop 
             muted 

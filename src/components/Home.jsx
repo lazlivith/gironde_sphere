@@ -61,9 +61,10 @@ export default function Home({ onOpenItem, onOpenCart, onNavigate }) {
             {menu.banners[0].cta}
           </button>
         </div>
-        {/* Background Video */}
+        {/* Background Video (with beautiful fallback poster) */}
         <video 
-          src="https://cdn.pixabay.com/video/2021/04/23/71953-541571477_tiny.mp4" 
+          src="/assets/promos/home-banner.mp4" 
+          poster="/assets/promos/home-banner-poster.png"
           autoPlay 
           loop 
           muted 
