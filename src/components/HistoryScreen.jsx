@@ -31,7 +31,7 @@ export default function HistoryScreen({ onBack, onReorder }) {
   };
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="flex-1 overflow-y-auto bg-white">
       {/* Header */}
       <div className="flex items-center justify-between px-5 pt-14 pb-4 bg-white sticky top-0 z-10 border-b border-gray-100">
         <BackButton onClick={onBack} />

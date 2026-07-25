@@ -120,15 +120,23 @@ export default function PromoPage({ onOpenItem }) {
               <div className="flex-1 min-w-0 pt-1 pb-1">
                 <p className="text-[16px] font-bold text-ink leading-tight truncate">{item.name}</p>
                 <p className="mt-1 text-[13px] text-muted line-clamp-2 leading-relaxed">{item.description}</p>
-                <div className="mt-2.5 flex items-baseline gap-2">
-                  <span className={`text-[16px] font-black ${tabConfig.type === "promo" ? "text-red-600" : "text-primary"}`}>
-                    {FCFA(item.price)}
-                  </span>
-                  {item.originalPrice && (
-                    <span className="text-[13px] text-muted font-medium line-through">
-                      {FCFA(item.originalPrice)}
+                <div className="mt-2.5 flex items-center justify-between gap-2">
+                  <div className="flex items-baseline gap-2">
+                    <span className={`text-[16px] font-black ${tabConfig.type === "promo" ? "text-red-600" : "text-primary"}`}>
+                      {FCFA(item.price)}
                     </span>
-                  )}
+                    {item.originalPrice && (
+                      <span className="text-[13px] text-muted font-medium line-through">
+                        {FCFA(item.originalPrice)}
+                      </span>
+                    )}
+                  </div>
+                  <span className="flex h-8 w-8 items-center justify-center rounded-full bg-ink text-white">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                      <line x1="12" y1="5" x2="12" y2="19"></line>
+                      <line x1="5" y1="12" x2="19" y2="12"></line>
+                    </svg>
+                  </span>
                 </div>
               </div>
             </button>

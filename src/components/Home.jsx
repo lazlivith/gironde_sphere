@@ -131,52 +131,8 @@ export default function Home({ onOpenItem, onOpenCart, onNavigate, onOpenHistory
         </div>
       )}
 
-      {/* Livraison rapide */}
-      <div className="mt-6 px-5 animate-fade-up" style={{ animationDelay: '100ms' }}>
-        <div className="flex items-center justify-between mb-3">
-          <h2 className="font-display text-[17px] font-bold text-ink">Livraison rapide 🔥</h2>
-          <button onClick={() => onNavigate("categories")} className="rounded-full bg-primary/10 px-3 py-1 text-[12px] font-semibold text-primary">
-            Voir tout
-          </button>
-        </div>
-        <div className="flex gap-3 overflow-x-auto no-scrollbar -mx-1 px-1 pb-2">
-          {fastestItems.map((item) => {
-            const displayPrice = item.price ?? item.sizes?.[0]?.price ?? 0;
-            return (
-              <button
-                key={item.id}
-                onClick={() => onOpenItem(item)}
-                className="flex-shrink-0 w-40 rounded-2xl bg-white shadow-sm border border-gray-100 overflow-hidden text-left transition-all active:scale-95 hover:shadow-md"
-              >
-                <div className="relative h-28 bg-surface flex items-center justify-center overflow-hidden">
-                  <ProductThumb item={item} />
-                  {item.tag && (
-                    <span className={`absolute top-2 left-2 rounded-full px-2 py-0.5 text-[10px] font-bold text-white ${item.tag === 'PROMO' ? 'bg-promo' : 'bg-primary'}`}>
-                      {item.tag}
-                    </span>
-                  )}
-                </div>
-                <div className="p-2.5">
-                  <p className="truncate text-[13px] font-semibold text-ink">{item.name}</p>
-                  <p className="mt-0.5 line-clamp-1 text-[11px] text-muted">{item.description}</p>
-                  <div className="mt-2 flex items-center justify-between gap-2">
-                    <span className="text-[13px] font-bold text-ink">{FCFA(displayPrice)}</span>
-                    <span className="flex h-6 w-6 items-center justify-center rounded-full bg-ink text-white">
-                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
-                        <line x1="12" y1="5" x2="12" y2="19"></line>
-                        <line x1="5" y1="12" x2="19" y2="12"></line>
-                      </svg>
-                    </span>
-                  </div>
-                </div>
-              </button>
-            );
-          })}
-        </div>
-      </div>
-
       {/* Plats populaires */}
-      <div className="mt-6 px-5 pb-4 animate-fade-up" style={{ animationDelay: '200ms' }}>
+      <div className="mt-6 px-5 pb-2 animate-fade-up" style={{ animationDelay: '100ms' }}>
         <div className="flex items-center justify-between mb-3">
           <h2 className="font-display text-[17px] font-bold text-ink">Plats populaires 👋</h2>
           <button onClick={() => onNavigate("categories")} className="rounded-full bg-primary/10 px-3 py-1 text-[12px] font-semibold text-primary">
@@ -186,17 +142,22 @@ export default function Home({ onOpenItem, onOpenCart, onNavigate, onOpenHistory
         <div className="flex gap-3 overflow-x-auto no-scrollbar -mx-1 px-1 pb-2">
           {popularItems.map((item) => (
             <button
-              key={item.id}
+              key={`pop-${item.id}`}
               onClick={() => onOpenItem(item)}
-              className="flex-shrink-0 w-36 rounded-2xl bg-white shadow-sm border border-gray-100 overflow-hidden text-left transition-all active:scale-95 hover:shadow-md"
+              className="flex-shrink-0 w-40 rounded-2xl bg-white shadow-sm border border-gray-100 overflow-hidden text-left transition-all active:scale-95 hover:shadow-md"
             >
-              <div className="h-28 bg-surface flex items-center justify-center overflow-hidden">
+              <div className="relative h-28 bg-surface flex items-center justify-center overflow-hidden">
                 <ProductThumb item={item} />
+                {item.tag && (
+                  <span className={`absolute top-2 left-2 rounded-full px-2 py-0.5 text-[10px] font-bold text-white ${item.tag === 'PROMO' ? 'bg-promo' : 'bg-primary'}`}>
+                    {item.tag}
+                  </span>
+                )}
               </div>
               <div className="p-2.5">
-                <p className="truncate text-[12px] font-semibold text-ink">{item.name}</p>
-                <div className="mt-1 flex items-center justify-between gap-2">
-                  <p className="text-[12px] font-bold text-ink">{FCFA(item.price ?? item.sizes?.[0]?.price ?? 0)}</p>
+                <p className="truncate text-[13px] font-semibold text-ink">{item.name}</p>
+                <div className="mt-2 flex items-center justify-between gap-2">
+                  <span className="text-[13px] font-bold text-ink">{FCFA(item.price ?? item.sizes?.[0]?.price ?? 0)}</span>
                   <span className="flex h-6 w-6 items-center justify-center rounded-full bg-ink text-white">
                     <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
                       <line x1="12" y1="5" x2="12" y2="19"></line>
@@ -210,19 +171,49 @@ export default function Home({ onOpenItem, onOpenCart, onNavigate, onOpenHistory
         </div>
       </div>
 
-      {/* Floating Cart */}
-      {itemCount > 0 && (
-        <button
-          onClick={onOpenCart}
-          className="fixed bottom-20 left-4 right-4 z-40 flex items-center justify-between rounded-2xl bg-ink px-5 py-4 text-white shadow-xl animate-pop transition-transform active:scale-95"
-        >
-          <span className="flex items-center gap-2.5 text-sm font-semibold">
-            <span className="flex h-6 w-6 items-center justify-center rounded-full bg-primary text-xs font-bold">{itemCount}</span>
-            Voir ma commande
-          </span>
-          <span className="font-display text-sm font-bold">{FCFA(subtotal)}</span>
-        </button>
-      )}
+      {/* Dynamic Categories */}
+      {menu.categories.map((category, index) => (
+        <div key={category.id} className="mt-4 px-5 pb-2 animate-fade-up" style={{ animationDelay: `${200 + index * 100}ms` }}>
+          <div className="flex items-center justify-between mb-3">
+            <h2 className="font-display text-[17px] font-bold text-ink">{category.label} {category.emoji}</h2>
+          </div>
+          <div className="flex gap-3 overflow-x-auto no-scrollbar -mx-1 px-1 pb-2">
+            {category.items.map((item) => {
+              const displayPrice = item.price ?? item.sizes?.[0]?.price ?? 0;
+              return (
+                <button
+                  key={`cat-${item.id}`}
+                  onClick={() => onOpenItem(item)}
+                  className="flex-shrink-0 w-36 rounded-2xl bg-white shadow-sm border border-gray-100 overflow-hidden text-left transition-all active:scale-95 hover:shadow-md"
+                >
+                  <div className="relative h-24 bg-surface flex items-center justify-center overflow-hidden">
+                    <ProductThumb item={item} />
+                    {item.tag && (
+                      <span className={`absolute top-2 left-2 rounded-full px-2 py-0.5 text-[9px] font-bold text-white ${item.tag === 'PROMO' ? 'bg-promo' : 'bg-primary'}`}>
+                        {item.tag}
+                      </span>
+                    )}
+                  </div>
+                  <div className="p-2.5">
+                    <p className="truncate text-[12px] font-semibold text-ink">{item.name}</p>
+                    <p className="mt-0.5 line-clamp-1 text-[11px] text-muted">{item.description}</p>
+                    <div className="mt-1 flex items-center justify-between gap-2">
+                      <p className="text-[12px] font-bold text-ink">{FCFA(displayPrice)}</p>
+                      <span className="flex h-6 w-6 items-center justify-center rounded-full bg-ink text-white">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                          <line x1="12" y1="5" x2="12" y2="19"></line>
+                          <line x1="5" y1="12" x2="19" y2="12"></line>
+                        </svg>
+                      </span>
+                    </div>
+                  </div>
+                </button>
+              );
+            })}
+          </div>
+        </div>
+      ))}
+
     </div>
   );
 }

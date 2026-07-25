@@ -110,9 +110,11 @@ export default function Detail({ item, onBack, onAdded }) {
   };
 
   return (
-    <div className="min-h-screen bg-[#F5F5F5]">
-      {/* Full-Bleed Hero Header */}
-      <div className="relative w-full h-64 bg-gray-100">
+    <div className="flex flex-col h-full w-full bg-[#F5F5F5]">
+      {/* Scrollable Content */}
+      <div className="flex-1 overflow-y-auto no-scrollbar pb-6">
+        {/* Full-Bleed Hero Header */}
+        <div className="relative w-full h-64 flex-shrink-0 bg-gray-100">
         <div className="absolute top-4 left-4 right-4 flex items-center justify-between z-10">
           <BackButton onClick={onBack} />
           <HeartButton active={isFav} onClick={() => setIsFav((v) => !v)} />
@@ -134,7 +136,7 @@ export default function Detail({ item, onBack, onAdded }) {
       </div>
 
       {/* Option Groups (Glovo Style) */}
-      <div className="pb-36 mt-2 space-y-2">
+      <div className="mt-2 space-y-2">
         {item.optionGroups?.map(group => {
           if (group.type === "single") {
             return (
@@ -203,10 +205,11 @@ export default function Detail({ item, onBack, onAdded }) {
           }
           return null;
         })}
+        </div>
       </div>
-
+      
       {/* Sticky Bottom Bar */}
-      <div className="fixed bottom-[68px] left-0 right-0 z-40 flex w-full items-center gap-3 bg-white px-5 py-3 shadow-[0_-10px_30px_rgba(0,0,0,0.06)] border-t border-gray-100">
+      <div className="flex-shrink-0 w-full flex items-center gap-3 bg-white px-5 py-4 shadow-[0_-10px_30px_rgba(0,0,0,0.06)] border-t border-gray-100 z-40">
         <Stepper qty={qty} onChange={(v) => setQty(Math.max(1, v))} />
         <button
           onClick={handleAdd}

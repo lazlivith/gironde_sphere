@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { CartProvider } from "./context/CartContext";
+import { CartProvider, useCart } from "./context/CartContext";
 import { MenuProvider, useMenu } from "./context/MenuContext";
 
 // Screens
@@ -18,6 +18,8 @@ import HistoryScreen from "./components/HistoryScreen";
 function Shell() {
   const [splashDone, setSplashDone] = useState(false);
   const { loading: menuLoading } = useMenu();
+  const { items, subtotal } = useCart();
+  const itemCount = items.reduce((sum, item) => sum + item.qty, 0);
 
   const [tab, setTab] = useState("discover");
   const [modal, setModal] = useState(null); // 'restaurant' | 'detail' | 'order' | 'checkout' | 'history'
@@ -64,7 +66,7 @@ function Shell() {
     switch (modal) {
       case "restaurant":
         return (
-          <div className="absolute inset-0 z-30 bg-white overflow-y-auto animate-slide-up">
+          <div className="absolute inset-0 z-30 bg-white flex flex-col animate-slide-up">
             <RestaurantDetail
               restaurant={selectedRestaurant}
               onBack={closeModal}
@@ -74,7 +76,7 @@ function Shell() {
         );
       case "detail":
         return (
-          <div className="absolute inset-0 z-30 bg-white overflow-y-auto animate-slide-up">
+          <div className="absolute inset-0 z-30 bg-white flex flex-col animate-slide-up">
             <Detail
               item={selectedItem}
               onBack={closeModal}
@@ -84,19 +86,19 @@ function Shell() {
         );
       case "order":
         return (
-          <div className="absolute inset-0 z-30 bg-white overflow-y-auto animate-slide-up">
+          <div className="absolute inset-0 z-30 bg-white flex flex-col animate-slide-up">
             <OrderScreen onBack={closeModal} onCheckout={() => setModal("checkout")} />
           </div>
         );
       case "checkout":
         return (
-          <div className="absolute inset-0 z-30 bg-white overflow-y-auto animate-slide-up">
+          <div className="absolute inset-0 z-30 bg-white flex flex-col animate-slide-up">
             <Checkout onBack={() => setModal("order")} />
           </div>
         );
       case "history":
         return (
-          <div className="absolute inset-0 z-30 bg-white overflow-y-auto animate-slide-up">
+          <div className="absolute inset-0 z-30 bg-white flex flex-col animate-slide-up">
             <HistoryScreen onBack={closeModal} onReorder={() => setModal("order")} />
           </div>
         );
@@ -109,6 +111,22 @@ function Shell() {
     <div className="relative min-h-[100dvh] bg-surface pb-[68px]">
       {renderTab()}
       {renderModal()}
+      
+      {/* Floating Global Cart Button */}
+      {!modal && itemCount > 0 && (
+        <button
+          onClick={openCart}
+          className="fixed bottom-20 left-4 right-4 z-40 flex items-center justify-between rounded-2xl bg-ink px-5 py-4 text-white shadow-xl animate-pop transition-transform active:scale-95"
+        >
+          <span className="flex items-center gap-2.5 text-sm font-semibold">
+            <span className="flex h-6 w-6 items-center justify-center rounded-full bg-primary text-xs font-bold">{itemCount}</span>
+            Voir ma commande
+          </span>
+          <span className="font-display text-sm font-bold">{
+            new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'XAF', maximumFractionDigits: 0 }).format(subtotal).replace('XAF', 'FCFA')
+          }</span>
+        </button>
+      )}
       <BottomNav 
         active={modal ? null : tab} 
         onNavigate={(id) => {
