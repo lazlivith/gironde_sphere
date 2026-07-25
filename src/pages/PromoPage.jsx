@@ -1,4 +1,4 @@
-﻿/* PromoPage.jsx — Section Promotions, Formules, Vidéos */
+/* PromoPage.jsx — Section Promotions, Formules, Vidéos */
 import { useState } from "react";
 import { useMenu } from "../context/MenuContext";
 import { LazyImage,  StatusBar, FCFA  } from "../components/ui/ui";
@@ -13,14 +13,26 @@ function ProductThumb({ item }) {
 
 export default function PromoPage({ onOpenItem }) {
   const { menu } = useMenu();
-  const allItems = menu.categories.flatMap((c) => c.items);
-  const formulesCategory = menu.categories.find(c => c.id === "formules")?.items || [];
-  const promoTabs = menu.promoTabs || [];
-  const defaultTab = promoTabs.length > 0 ? promoTabs[0].id : "";
-  const [activeTab, setActiveTab] = useState(defaultTab);
+  // On attache l'id et le label de la catégorie à chaque item pour faciliter le filtrage
+  const allItems = menu.categories.flatMap((c) => c.items.map(i => ({...i, categoryId: c.id, categoryLabel: c.label})));
 
   // Vraies promotions : articles avec un originalPrice défini et supérieur au price
   const realPromoItems = allItems.filter(item => item.originalPrice && item.originalPrice > item.price);
+
+  // Générer les onglets dynamiquement
+  const promoCategories = Array.from(new Set(realPromoItems.map(i => i.categoryId)))
+    .map(id => {
+      const cat = menu.categories.find(c => c.id === id);
+      return cat ? { id: cat.id, label: cat.label, type: "category_promo" } : null;
+    })
+    .filter(Boolean);
+
+  const promoTabs = [
+    { id: "all", label: "Promos 🔥", type: "promo" },
+    ...promoCategories
+  ];
+
+  const [activeTab, setActiveTab] = useState(promoTabs[0]?.id || "all");
 
   return (
     <div className="pb-24 overflow-y-auto min-h-screen bg-[#F9F9F9]">
@@ -48,7 +60,7 @@ export default function PromoPage({ onOpenItem }) {
           
           <div className="absolute bottom-5 left-5 right-5 pointer-events-none">
             <span className="inline-block rounded-full bg-red-500 px-3 py-1 text-[11px] font-bold text-white mb-2 shadow-lg shadow-red-500/30 uppercase tracking-wider">
-              à€ La Une
+              À La Une
             </span>
             <h2 className="font-display text-[22px] font-bold text-white leading-tight drop-shadow-md">Nouveautés Songolo</h2>
             <p className="text-[13px] text-white/90 mt-1 font-medium drop-shadow-md">Découvrez nos formules explosives</p>
@@ -82,10 +94,10 @@ export default function PromoPage({ onOpenItem }) {
           if (!tabConfig) return null;
 
           let itemsToDisplay = [];
-          if (tabConfig.type === "promo") {
+          if (activeTab === "all") {
             itemsToDisplay = realPromoItems;
-          } else if (tabConfig.type === "category") {
-            itemsToDisplay = menu.categories.find(c => c.id === tabConfig.categoryId)?.items || [];
+          } else {
+            itemsToDisplay = realPromoItems.filter(i => i.categoryId === activeTab);
           }
 
           if (itemsToDisplay.length === 0) {
@@ -109,7 +121,7 @@ export default function PromoPage({ onOpenItem }) {
                   PROMO
                 </div>
               )}
-              {tabConfig.type === "category" && (
+              {tabConfig.type === "category_promo" && (
                 <div className="absolute top-0 right-0 bg-primary/10 text-primary text-[10px] font-bold px-3 py-1 rounded-bl-2xl uppercase">
                   {tabConfig.label}
                 </div>

@@ -134,7 +134,7 @@ export default function Home({ onOpenItem, onOpenCart, onNavigate, onOpenHistory
       {/* Plats populaires */}
       <section aria-labelledby="pop-heading" className="mt-6 px-5 pb-2 animate-fade-up" style={{ animationDelay: '100ms' }}>
         <div className="flex items-center justify-between mb-3">
-          <h2 className="font-display text-[17px] font-bold text-ink">Plats populaires à°Å¸â€˜â€¹</h2>
+          <h2 className="font-display text-[17px] font-bold text-ink">Plats populaires 👨‍🍳</h2>
           <button onClick={() => onNavigate("categories")} className="rounded-full bg-primary/10 px-3 py-1 text-[12px] font-semibold text-primary">
             Voir tout
           </button>

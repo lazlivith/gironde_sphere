@@ -1,4 +1,4 @@
-import { useState } from "react";
+﻿import { useState } from "react";
 import { CartProvider, useCart } from "./context/CartContext";
 import { MenuProvider, useMenu } from "./context/MenuContext";
 
@@ -65,7 +65,7 @@ function Shell() {
     switch (modal) {
       case "restaurant":
         return (
-          <div className="fixed inset-0 z-50 bg-white flex flex-col animate-slide-up">
+          <div className="fixed inset-0 z-[100] bg-white flex flex-col animate-slide-up">
             <RestaurantDetail
               restaurant={selectedRestaurant}
               onBack={closeModal}
@@ -75,7 +75,7 @@ function Shell() {
         );
       case "detail":
         return (
-          <div className="fixed inset-0 z-50 bg-white flex flex-col animate-slide-up">
+          <div className="fixed inset-0 z-[100] bg-white flex flex-col animate-slide-up">
             <Detail
               item={selectedItem}
               onBack={closeModal}
@@ -85,19 +85,19 @@ function Shell() {
         );
       case "order":
         return (
-          <div className="fixed inset-0 z-50 bg-white flex flex-col animate-slide-up">
+          <div className="fixed inset-0 z-[100] bg-white flex flex-col animate-slide-up">
             <OrderScreen onBack={closeModal} onCheckout={() => setModal("checkout")} />
           </div>
         );
       case "checkout":
         return (
-          <div className="fixed inset-0 z-50 bg-white flex flex-col animate-slide-up">
+          <div className="fixed inset-0 z-[100] bg-white flex flex-col animate-slide-up">
             <Checkout onBack={() => setModal("order")} />
           </div>
         );
       case "history":
         return (
-          <div className="fixed inset-0 z-50 bg-white flex flex-col animate-slide-up">
+          <div className="fixed inset-0 z-[100] bg-white flex flex-col animate-slide-up">
             <HistoryScreen onBack={closeModal} onReorder={() => setModal("order")} />
           </div>
         );
@@ -146,4 +146,5 @@ export default function App() {
     </MenuProvider>
   );
 }
+
 
