@@ -1,10 +1,7 @@
 /* PromoPage.jsx — Section Promotions, Formules, Vidéos */
 import { useState } from "react";
-import menu from "../data/menu.json";
+import { useMenu } from "../context/MenuContext";
 import { StatusBar, FCFA } from "./ui";
-
-const allItems = menu.categories.flatMap((c) => c.items);
-const formulesCategory = menu.categories.find(c => c.id === "formules")?.items || [];
 
 function ProductThumb({ item }) {
   return item.image ? (
@@ -15,17 +12,15 @@ function ProductThumb({ item }) {
 }
 
 export default function PromoPage({ onOpenItem }) {
-  const [activeTab, setActiveTab] = useState("offres");
+  const { menu } = useMenu();
+  const allItems = menu.categories.flatMap((c) => c.items);
+  const formulesCategory = menu.categories.find(c => c.id === "formules")?.items || [];
+  const promoTabs = menu.promoTabs || [];
+  const defaultTab = promoTabs.length > 0 ? promoTabs[0].id : "";
+  const [activeTab, setActiveTab] = useState(defaultTab);
 
-  // On crée quelques promos basées sur les items existants si on n'a pas de champ originalPrice
-  const promoItems = allItems.slice(0, 3).map(item => ({
-    ...item,
-    originalPrice: item.price + 500 // Mock a discount
-  }));
-
-  // Filtres pour jus et crêpes
-  const jusItems = allItems.filter(item => item.id.includes("jus") || item.emoji === "🥤" || item.emoji === "🍋" || item.id.includes("cocktail"));
-  const crepesItems = allItems.filter(item => item.id.includes("crepe") || item.emoji === "🥞");
+  // Vraies promotions : articles avec un originalPrice défini et supérieur au price
+  const realPromoItems = allItems.filter(item => item.originalPrice && item.originalPrice > item.price);
 
   return (
     <div className="pb-24 overflow-y-auto min-h-screen bg-[#F9F9F9]">
@@ -64,17 +59,17 @@ export default function PromoPage({ onOpenItem }) {
       {/* Horizontal Tabs */}
       <div className="px-5 mb-6">
         <div className="flex gap-2.5 overflow-x-auto no-scrollbar -mx-1 px-1">
-          {["offres", "formules", "jus", "crêpes"].map((tab) => (
+          {promoTabs.map((tab) => (
             <button
-              key={tab}
-              onClick={() => setActiveTab(tab)}
-              className={`flex-shrink-0 rounded-2xl px-5 py-3 text-[14px] font-bold capitalize transition-all active:scale-95 ${
-                activeTab === tab 
+              key={tab.id}
+              onClick={() => setActiveTab(tab.id)}
+              className={`flex-shrink-0 rounded-2xl px-5 py-3 text-[14px] font-bold transition-all active:scale-95 ${
+                activeTab === tab.id 
                   ? "bg-ink text-white shadow-lg" 
                   : "bg-white border border-gray-100 text-muted shadow-sm hover:border-gray-200"
               }`}
             >
-              {tab === "offres" ? "Promos 🔥" : tab}
+              {tab.label}
             </button>
           ))}
         </div>
@@ -82,16 +77,43 @@ export default function PromoPage({ onOpenItem }) {
 
       {/* Dynamic Content */}
       <div className="px-5 space-y-4">
-        {activeTab === "offres" && (
-          promoItems.map(item => (
+        {(() => {
+          const tabConfig = promoTabs.find(t => t.id === activeTab);
+          if (!tabConfig) return null;
+
+          let itemsToDisplay = [];
+          if (tabConfig.type === "promo") {
+            itemsToDisplay = realPromoItems;
+          } else if (tabConfig.type === "category") {
+            itemsToDisplay = menu.categories.find(c => c.id === tabConfig.categoryId)?.items || [];
+          }
+
+          if (itemsToDisplay.length === 0) {
+            return (
+              <div className="py-12 text-center text-muted">
+                <p>Aucun article disponible pour le moment.</p>
+              </div>
+            );
+          }
+
+          return itemsToDisplay.map(item => (
             <button
               key={item.id}
               onClick={() => onOpenItem(item)}
-              className="flex w-full items-center gap-4 text-left rounded-3xl bg-white p-3.5 shadow-sm ring-1 ring-red-500/20 relative overflow-hidden transition-all active:scale-95"
+              className={`flex w-full items-center gap-4 text-left rounded-3xl bg-white p-3.5 shadow-sm transition-all active:scale-95 relative overflow-hidden ${
+                tabConfig.type === "promo" ? "ring-1 ring-red-500/20" : "ring-1 ring-primary/20"
+              }`}
             >
-              <div className="absolute top-0 right-0 bg-red-500 text-white text-[10px] font-bold px-3 py-1 rounded-bl-2xl">
-                PROMO
-              </div>
+              {tabConfig.type === "promo" && (
+                <div className="absolute top-0 right-0 bg-red-500 text-white text-[10px] font-bold px-3 py-1 rounded-bl-2xl">
+                  PROMO
+                </div>
+              )}
+              {tabConfig.type === "category" && (
+                <div className="absolute top-0 right-0 bg-primary/10 text-primary text-[10px] font-bold px-3 py-1 rounded-bl-2xl uppercase">
+                  {tabConfig.label}
+                </div>
+              )}
               <div className="flex-shrink-0 h-24 w-24 rounded-2xl bg-[#FFF5EE] overflow-hidden flex items-center justify-center shadow-inner">
                 <ProductThumb item={item} />
               </div>
@@ -99,56 +121,19 @@ export default function PromoPage({ onOpenItem }) {
                 <p className="text-[16px] font-bold text-ink leading-tight truncate">{item.name}</p>
                 <p className="mt-1 text-[13px] text-muted line-clamp-2 leading-relaxed">{item.description}</p>
                 <div className="mt-2.5 flex items-baseline gap-2">
-                  <span className="text-[16px] font-black text-red-600">{FCFA(item.price)}</span>
-                  <span className="text-[13px] text-muted font-medium line-through">{FCFA(item.originalPrice)}</span>
+                  <span className={`text-[16px] font-black ${tabConfig.type === "promo" ? "text-red-600" : "text-primary"}`}>
+                    {FCFA(item.price)}
+                  </span>
+                  {item.originalPrice && (
+                    <span className="text-[13px] text-muted font-medium line-through">
+                      {FCFA(item.originalPrice)}
+                    </span>
+                  )}
                 </div>
               </div>
             </button>
-          ))
-        )}
-
-        {activeTab === "formules" && (
-          formulesCategory.map(item => (
-            <button
-              key={item.id}
-              onClick={() => onOpenItem(item)}
-              className="flex w-full items-center gap-4 text-left rounded-3xl bg-white p-3.5 shadow-sm ring-1 ring-primary/20 transition-all active:scale-95 relative overflow-hidden"
-            >
-              <div className="absolute top-0 right-0 bg-primary/10 text-primary text-[10px] font-bold px-3 py-1 rounded-bl-2xl">
-                MENU
-              </div>
-              <div className="flex-shrink-0 h-24 w-24 rounded-2xl bg-[#FFF5EE] overflow-hidden flex items-center justify-center shadow-inner">
-                <ProductThumb item={item} />
-              </div>
-              <div className="flex-1 min-w-0 pt-1 pb-1">
-                <p className="text-[16px] font-bold text-ink leading-tight truncate">{item.name}</p>
-                <p className="mt-1 text-[13px] text-muted line-clamp-2 leading-relaxed">{item.description}</p>
-                <div className="mt-2.5 flex items-baseline gap-2">
-                  <span className="text-[16px] font-black text-primary">{FCFA(item.price)}</span>
-                </div>
-              </div>
-            </button>
-          ))
-        )}
-
-        {(activeTab === "jus" ? jusItems : activeTab === "crêpes" ? crepesItems : []).map(item => (
-          <button
-            key={item.id}
-            onClick={() => onOpenItem(item)}
-            className="flex w-full items-center gap-4 text-left rounded-3xl bg-white p-3.5 shadow-[0_2px_10px_rgba(0,0,0,0.02)] ring-1 ring-black/5 transition-all active:scale-95"
-          >
-            <div className="flex-shrink-0 h-20 w-20 rounded-2xl bg-[#F9F9F9] overflow-hidden flex items-center justify-center">
-              <ProductThumb item={item} />
-            </div>
-            <div className="flex-1 min-w-0">
-              <p className="text-[15px] font-bold text-ink leading-tight truncate">{item.name}</p>
-              <p className="mt-1 text-[12px] text-muted line-clamp-1">{item.description}</p>
-              <div className="mt-2 flex items-baseline gap-2">
-                <span className="text-[15px] font-bold text-ink">{FCFA(item.price)}</span>
-              </div>
-            </div>
-          </button>
-        ))}
+          ));
+        })()}
       </div>
     </div>
   );

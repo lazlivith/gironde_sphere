@@ -1,9 +1,7 @@
 /* SearchPage.jsx — schéma actuel (popularSearchTags + categories > items) */
 import { useState } from "react";
-import menu from "../data/menu.json";
+import { useMenu } from "../context/MenuContext";
 import { FCFA } from "./ui";
-
-const allItems = menu.categories.flatMap((c) => c.items);
 
 function ProductThumb({ item }) {
   return item.image ? (
@@ -14,6 +12,8 @@ function ProductThumb({ item }) {
 }
 
 export default function SearchPage({ onOpenItem }) {
+  const { menu } = useMenu();
+  const allItems = menu.categories.flatMap((c) => c.items);
   const [query, setQuery] = useState("");
   const [results, setResults] = useState([]);
   const [searched, setSearched] = useState(false);

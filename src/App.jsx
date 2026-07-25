@@ -1,6 +1,6 @@
-/* App.jsx — Main router/shell — 4 tabs (no Profile, no Notifications) */
 import { useState } from "react";
 import { CartProvider } from "./context/CartContext";
+import { MenuProvider, useMenu } from "./context/MenuContext";
 
 // Screens
 import Splash from "./components/Splash";
@@ -13,13 +13,14 @@ import Detail from "./components/Detail";
 import OrderScreen from "./components/OrderScreen";
 import Checkout from "./components/Checkout";
 import BottomNav from "./components/BottomNav";
-import InstallPrompt from "./components/InstallPrompt";
+import HistoryScreen from "./components/HistoryScreen";
 
 function Shell() {
   const [splashDone, setSplashDone] = useState(false);
+  const { loading: menuLoading } = useMenu();
 
   const [tab, setTab] = useState("discover");
-  const [modal, setModal] = useState(null); // 'restaurant' | 'detail' | 'order' | 'checkout'
+  const [modal, setModal] = useState(null); // 'restaurant' | 'detail' | 'order' | 'checkout' | 'history'
   const [selectedItem, setSelectedItem] = useState(null);
   const [selectedRestaurant, setSelectedRestaurant] = useState(null);
 
@@ -37,7 +38,7 @@ function Shell() {
   const openCart = () => setModal("order");
 
   // Splash
-  if (!splashDone) {
+  if (!splashDone || menuLoading) {
     return <Splash onFinish={() => setSplashDone(true)} />;
   }
 
@@ -45,7 +46,7 @@ function Shell() {
   const renderTab = () => {
     switch (tab) {
       case "discover":
-        return <Home onOpenItem={openItem} onOpenCart={openCart} onNavigate={setTab} />;
+        return <Home onOpenItem={openItem} onOpenCart={openCart} onNavigate={setTab} onOpenHistory={() => setModal("history")} />;
       case "categories":
         return <CategoriesPage onOpenItem={openItem} />;
       case "search":
@@ -93,25 +94,39 @@ function Shell() {
             <Checkout onBack={() => setModal("order")} />
           </div>
         );
+      case "history":
+        return (
+          <div className="absolute inset-0 z-30 bg-white overflow-y-auto animate-slide-up">
+            <HistoryScreen onBack={closeModal} onReorder={() => setModal("order")} />
+          </div>
+        );
       default:
         return null;
     }
   };
 
   return (
-    <div className="relative min-h-screen bg-white">
-      <InstallPrompt />
+    <div className="relative min-h-[100dvh] bg-surface pb-[68px]">
       {renderTab()}
       {renderModal()}
-      {!modal && <BottomNav active={tab} onNavigate={setTab} />}
+      <BottomNav 
+        active={modal ? null : tab} 
+        onNavigate={(id) => {
+          setModal(null);
+          setTab(id);
+        }} 
+      />
     </div>
   );
 }
 
 export default function App() {
   return (
-    <CartProvider>
-      <Shell />
-    </CartProvider>
+    <MenuProvider>
+      <CartProvider>
+        <Shell />
+      </CartProvider>
+    </MenuProvider>
   );
 }
+

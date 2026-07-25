@@ -1,25 +1,35 @@
 /* Checkout.jsx — schéma actuel (menu.deliveryZones avec id/label) */
 import { useState } from "react";
 import { useCart } from "../context/CartContext";
+import { useMenu } from "../context/MenuContext";
 import { sendOrderToWhatsApp } from "../services/whatsappService";
+import { isStoreOpen } from "../utils/time";
 import { BackButton, FCFA } from "./ui";
-import menu from "../data/menu.json";
-
-const zones = menu.deliveryZones;
 
 export default function Checkout({ onBack }) {
+  const { menu } = useMenu();
+  const zones = menu.deliveryZones || [];
   const { lines, subtotal, clearCart } = useCart();
-  const [customer, setCustomer] = useState({
-    name: "",
-    phone: "",
-    address: "",
-    zoneId: zones[0].id,
+  const [customer, setCustomer] = useState(() => {
+    try {
+      const saved = localStorage.getItem("songolo_customer");
+      if (saved) return JSON.parse(saved);
+    } catch (err) {
+      console.warn("Failed to load customer from local storage");
+    }
+    return {
+      name: "",
+      phone: "",
+      address: "",
+      zoneId: zones[0].id,
+    };
   });
   const [error, setError] = useState("");
 
   const zone = zones.find((z) => z.id === customer.zoneId);
   const total = subtotal + (zone?.fee ?? 0);
-  const canSubmit = customer.name.trim() && customer.phone.trim();
+  const isOpen = isStoreOpen();
+  const canSubmit = customer.name.trim() && customer.phone.trim() && isOpen;
 
   const handleSubmit = (e) => {
     if (e) e.preventDefault();
@@ -56,6 +66,23 @@ export default function Checkout({ onBack }) {
       name: menu.brand,
       whatsappNumber: menu.whatsappNumber,
     };
+
+    // Mémorisation des informations du client pour la prochaine commande
+    localStorage.setItem("songolo_customer", JSON.stringify(customer));
+
+    // Mémorisation dans l'historique des commandes
+    const orderRecord = {
+      id: crypto.randomUUID(),
+      date: new Date().toISOString(),
+      cartLines: lines,
+      summary: summary
+    };
+    try {
+      const existingHistory = JSON.parse(localStorage.getItem("songolo_history") || "[]");
+      localStorage.setItem("songolo_history", JSON.stringify([orderRecord, ...existingHistory].slice(0, 20))); // Keep last 20
+    } catch (e) {
+      console.warn("Failed to save order history");
+    }
 
     sendOrderToWhatsApp(cartItems, clientInfo, summary, restaurantInfo);
     clearCart();
@@ -148,16 +175,22 @@ export default function Checkout({ onBack }) {
       </form>
 
       {/* CTA */}
-      <div className="fixed bottom-0 left-1/2 z-50 w-full max-w-[430px] -translate-x-1/2 bg-white px-5 py-4 shadow-[0_-4px_20px_rgba(0,0,0,0.08)]">
+      <div className="fixed bottom-[68px] left-0 right-0 z-40 w-full bg-white px-5 py-3 shadow-[0_-4px_20px_rgba(0,0,0,0.08)] border-t border-gray-100">
         <button
           onClick={handleSubmit}
           disabled={!canSubmit}
-          className="flex w-full items-center justify-center gap-2 rounded-full bg-primary py-4 text-[15px] font-bold text-white shadow-lg shadow-primary/30 transition disabled:opacity-40"
+          className={`flex w-full items-center justify-center gap-2 rounded-full py-4 text-[15px] font-bold text-white shadow-lg transition disabled:opacity-50 ${isOpen ? "bg-primary shadow-primary/30" : "bg-gray-400 shadow-gray-400/30"}`}
         >
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-            <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
-          </svg>
-          Confirmer via WhatsApp — {FCFA(total)}
+          {isOpen ? (
+            <>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
+              </svg>
+              Confirmer via WhatsApp — {FCFA(total)}
+            </>
+          ) : (
+             "Cuisines fermées (10h - 22h30)"
+          )}
         </button>
       </div>
     </div>

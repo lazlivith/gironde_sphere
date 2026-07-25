@@ -1,10 +1,10 @@
 /* Home.jsx — Discovery Page — schéma menu actuel (categories > items imbriqués) */
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useCart } from "../context/CartContext";
-import menu from "../data/menu.json";
+import { useMenu } from "../context/MenuContext";
 import { StatusBar, StarRating, FCFA } from "./ui";
-
-const allItems = menu.categories.flatMap((c) => c.items);
+import { isStoreOpen } from "../utils/time";
+import { useInstallPrompt } from "../utils/useInstallPrompt";
 
 function ProductThumb({ item, className = "" }) {
   return item.image ? (
@@ -14,15 +14,28 @@ function ProductThumb({ item, className = "" }) {
   );
 }
 
-export default function Home({ onOpenItem, onOpenCart, onNavigate }) {
+export default function Home({ onOpenItem, onOpenCart, onNavigate, onOpenHistory }) {
+  const { menu } = useMenu();
+  const allItems = menu.categories.flatMap((c) => c.items);
   const { itemCount, subtotal } = useCart();
-  const [activeBanner] = useState(0);
+  const [activeBanner, setActiveBanner] = useState(0);
+
+  // Auto-rotate banner every 4 seconds
+  useEffect(() => {
+    if (!menu.banners || menu.banners.length <= 1) return;
+    const timer = setInterval(() => {
+      setActiveBanner((prev) => (prev + 1) % menu.banners.length);
+    }, 4000);
+    return () => clearInterval(timer);
+  }, []);
 
   const fastestItems = allItems.slice(0, 4);
   const popularItems  = allItems.slice(0, 3);
+  const isOpen = isStoreOpen();
+  const { deferredPrompt, promptToInstall } = useInstallPrompt();
 
   return (
-    <div className="pb-24 overflow-y-auto min-h-screen bg-white">
+    <div className="pb-24 overflow-y-auto min-h-screen bg-surface">
       <StatusBar />
 
       {/* Header location */}
@@ -45,20 +58,39 @@ export default function Home({ onOpenItem, onOpenCart, onNavigate }) {
             </div>
           </div>
         </button>
-        <div className="w-9" />
+        <button onClick={onOpenHistory} className="flex h-9 w-9 items-center justify-center rounded-full bg-white text-ink transition active:scale-95 shadow-sm border border-gray-100">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M3 3v5h5"/>
+            <path d="M3.05 13A9 9 0 1 0 6 5.3L3 8"/>
+            <path d="M12 7v5l4 2"/>
+          </svg>
+        </button>
       </div>
+
+      {/* Bannière Cuisines Fermées */}
+      {!isOpen && (
+        <div className="mx-4 mb-4 rounded-2xl bg-red-50 p-4 border border-red-100 flex items-start gap-3 animate-fade-up">
+          <span className="text-xl">😴</span>
+          <div>
+            <h3 className="text-[14px] font-bold text-red-800">Cuisines fermées</h3>
+            <p className="text-[12px] text-red-600 mt-0.5 leading-tight">
+              Nous sommes ouverts tous les jours de 10h à 22h30. À très vite !
+            </p>
+          </div>
+        </div>
+      )}
 
       {/* Promo Banner */}
       <div className="mx-4 overflow-hidden rounded-3xl bg-primary relative animate-fade-up" style={{ height: 160 }}>
         <div className="absolute inset-0 flex flex-col justify-center pl-5 pr-36 z-10">
-          <p className="font-display text-[18px] font-bold leading-tight text-white whitespace-pre-line">
-            {menu.banners[0].title}
+          <p className="font-display text-[18px] font-bold leading-tight text-white whitespace-pre-line drop-shadow-md">
+            {menu.banners[activeBanner]?.title || menu.banners[0].title}
           </p>
           <button
             onClick={() => onNavigate("categories")}
-            className="mt-4 w-fit rounded-full bg-[#1A1A1A] px-5 py-2.5 text-[13px] font-semibold text-white"
+            className="mt-4 w-fit rounded-full bg-white px-5 py-2.5 text-[13px] font-semibold text-ink shadow-md"
           >
-            {menu.banners[0].cta}
+            {menu.banners[activeBanner]?.cta || menu.banners[0].cta}
           </button>
         </div>
         {/* Background Video (with beautiful fallback poster) */}
@@ -69,16 +101,35 @@ export default function Home({ onOpenItem, onOpenCart, onNavigate }) {
           loop 
           muted 
           playsInline 
-          className="absolute inset-0 w-full h-full object-cover opacity-60 mix-blend-overlay"
+          className="absolute inset-0 w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-primary via-primary/80 to-transparent"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-transparent"></div>
 
         <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-1.5 z-10">
-          {[0, 1, 2, 3].map((i) => (
+          {menu.banners.map((_, i) => (
             <div key={i} className={`rounded-full transition-all duration-300 ${i === activeBanner ? "w-4 h-2 bg-white" : "w-2 h-2 bg-white/40"}`} />
           ))}
         </div>
       </div>
+
+      {/* Install PWA Prompt */}
+      {deferredPrompt && (
+        <div className="mx-4 mt-6 overflow-hidden rounded-3xl bg-white border border-gray-100 p-5 flex items-center justify-between gap-4 animate-fade-up shadow-sm">
+          <div className="flex items-center gap-4">
+            <img src="/icons/icon-192.png" alt="Logo" className="w-12 h-12 rounded-2xl shadow-sm border border-gray-50" />
+            <div>
+              <h3 className="font-display text-[15px] font-bold text-ink leading-tight">Installer l'app</h3>
+              <p className="text-[12px] text-muted mt-1 leading-tight">Accès direct depuis l'écran d'accueil</p>
+            </div>
+          </div>
+          <button 
+            onClick={promptToInstall}
+            className="flex-shrink-0 rounded-full bg-primary px-4 py-2.5 text-[13px] font-bold text-white shadow-md shadow-primary/30 active:scale-95 transition"
+          >
+            Ajouter
+          </button>
+        </div>
+      )}
 
       {/* Livraison rapide */}
       <div className="mt-6 px-5 animate-fade-up" style={{ animationDelay: '100ms' }}>
@@ -88,19 +139,19 @@ export default function Home({ onOpenItem, onOpenCart, onNavigate }) {
             Voir tout
           </button>
         </div>
-        <div className="flex gap-3 overflow-x-auto no-scrollbar -mx-1 px-1">
+        <div className="flex gap-3 overflow-x-auto no-scrollbar -mx-1 px-1 pb-2">
           {fastestItems.map((item) => {
             const displayPrice = item.price ?? item.sizes?.[0]?.price ?? 0;
             return (
               <button
                 key={item.id}
                 onClick={() => onOpenItem(item)}
-                className="flex-shrink-0 w-40 rounded-2xl bg-white shadow-sm ring-1 ring-black/5 overflow-hidden text-left transition-all active:scale-95 hover:shadow-md"
+                className="flex-shrink-0 w-40 rounded-2xl bg-white shadow-sm border border-gray-100 overflow-hidden text-left transition-all active:scale-95 hover:shadow-md"
               >
-                <div className="relative h-28 bg-[#FFF5EE] flex items-center justify-center overflow-hidden">
+                <div className="relative h-28 bg-surface flex items-center justify-center overflow-hidden">
                   <ProductThumb item={item} />
                   {item.tag && (
-                    <span className="absolute top-2 left-2 rounded-full bg-primary px-2 py-0.5 text-[10px] font-bold text-white">
+                    <span className={`absolute top-2 left-2 rounded-full px-2 py-0.5 text-[10px] font-bold text-white ${item.tag === 'PROMO' ? 'bg-promo' : 'bg-primary'}`}>
                       {item.tag}
                     </span>
                   )}
@@ -108,9 +159,14 @@ export default function Home({ onOpenItem, onOpenCart, onNavigate }) {
                 <div className="p-2.5">
                   <p className="truncate text-[13px] font-semibold text-ink">{item.name}</p>
                   <p className="mt-0.5 line-clamp-1 text-[11px] text-muted">{item.description}</p>
-                  <div className="mt-2 flex items-center gap-2">
+                  <div className="mt-2 flex items-center justify-between gap-2">
                     <span className="text-[13px] font-bold text-ink">{FCFA(displayPrice)}</span>
-                    <StarRating value="9.2" />
+                    <span className="flex h-6 w-6 items-center justify-center rounded-full bg-ink text-white">
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                        <line x1="12" y1="5" x2="12" y2="19"></line>
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                      </svg>
+                    </span>
                   </div>
                 </div>
               </button>
@@ -127,19 +183,27 @@ export default function Home({ onOpenItem, onOpenCart, onNavigate }) {
             Voir tout
           </button>
         </div>
-        <div className="flex gap-3 overflow-x-auto no-scrollbar -mx-1 px-1">
+        <div className="flex gap-3 overflow-x-auto no-scrollbar -mx-1 px-1 pb-2">
           {popularItems.map((item) => (
             <button
               key={item.id}
               onClick={() => onOpenItem(item)}
-              className="flex-shrink-0 w-36 rounded-2xl bg-white shadow-sm ring-1 ring-black/5 overflow-hidden text-left transition-all active:scale-95 hover:shadow-md"
+              className="flex-shrink-0 w-36 rounded-2xl bg-white shadow-sm border border-gray-100 overflow-hidden text-left transition-all active:scale-95 hover:shadow-md"
             >
-              <div className="h-28 bg-[#FFF5EE] flex items-center justify-center overflow-hidden">
+              <div className="h-28 bg-surface flex items-center justify-center overflow-hidden">
                 <ProductThumb item={item} />
               </div>
-              <div className="p-2">
+              <div className="p-2.5">
                 <p className="truncate text-[12px] font-semibold text-ink">{item.name}</p>
-                <p className="text-[12px] font-bold text-primary mt-1">{FCFA(item.price ?? item.sizes?.[0]?.price ?? 0)}</p>
+                <div className="mt-1 flex items-center justify-between gap-2">
+                  <p className="text-[12px] font-bold text-ink">{FCFA(item.price ?? item.sizes?.[0]?.price ?? 0)}</p>
+                  <span className="flex h-6 w-6 items-center justify-center rounded-full bg-ink text-white">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                      <line x1="12" y1="5" x2="12" y2="19"></line>
+                      <line x1="5" y1="12" x2="19" y2="12"></line>
+                    </svg>
+                  </span>
+                </div>
               </div>
             </button>
           ))}
@@ -150,7 +214,7 @@ export default function Home({ onOpenItem, onOpenCart, onNavigate }) {
       {itemCount > 0 && (
         <button
           onClick={onOpenCart}
-          className="fixed bottom-20 left-1/2 z-40 flex w-[calc(100%-32px)] max-w-[398px] -translate-x-1/2 items-center justify-between rounded-2xl bg-ink px-5 py-4 text-white shadow-xl animate-pop transition-transform active:scale-95"
+          className="fixed bottom-20 left-4 right-4 z-40 flex items-center justify-between rounded-2xl bg-ink px-5 py-4 text-white shadow-xl animate-pop transition-transform active:scale-95"
         >
           <span className="flex items-center gap-2.5 text-sm font-semibold">
             <span className="flex h-6 w-6 items-center justify-center rounded-full bg-primary text-xs font-bold">{itemCount}</span>

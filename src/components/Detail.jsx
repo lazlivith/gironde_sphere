@@ -111,27 +111,25 @@ export default function Detail({ item, onBack, onAdded }) {
 
   return (
     <div className="min-h-screen bg-[#F5F5F5]">
-      {/* Hero Header */}
-      <div className="relative bg-white pt-12 pb-6 flex flex-col items-center" style={{ minHeight: 250 }}>
-        <div className="absolute top-12 left-4 right-4 flex items-center justify-between z-10">
+      {/* Full-Bleed Hero Header */}
+      <div className="relative w-full h-64 bg-gray-100">
+        <div className="absolute top-4 left-4 right-4 flex items-center justify-between z-10">
           <BackButton onClick={onBack} />
           <HeartButton active={isFav} onClick={() => setIsFav((v) => !v)} />
         </div>
-        <div className="mt-6 flex h-48 w-48 items-center justify-center rounded-full bg-[#FFF5EE] shadow-xl overflow-hidden animate-fade-up">
-          {item.image ? (
-            <img src={item.image} alt={item.name} className="h-full w-full object-cover" />
-          ) : (
-            <span className="text-8xl">{item.emoji || "🍽"}</span>
-          )}
-        </div>
+        {item.image ? (
+          <img src={item.image} alt={item.name} className="h-full w-full object-cover" />
+        ) : (
+          <div className="flex h-full w-full items-center justify-center bg-[#FFF5EE] text-8xl">{item.emoji || "🍽"}</div>
+        )}
       </div>
 
       {/* Basic Info */}
-      <div className="bg-white px-5 py-5 border-b border-gray-100 shadow-sm relative z-10">
-        <h1 className="font-display text-[24px] font-bold text-ink leading-tight">{item.name}</h1>
-        <p className="mt-1.5 text-[14px] leading-relaxed text-muted">{item.description}</p>
-        <div className="mt-3 flex items-baseline gap-2">
-          <span className="font-display text-[22px] font-bold text-primary">{FCFA(item.price)}</span>
+      <div className="bg-white px-5 py-4 border-b border-gray-100 shadow-sm relative z-10">
+        <h1 className="font-display text-[22px] font-bold text-ink leading-tight">{item.name}</h1>
+        <p className="mt-1 text-[13px] leading-relaxed text-muted">{item.description}</p>
+        <div className="mt-2 flex items-baseline gap-2">
+          <span className="font-display text-[20px] font-bold text-primary">{FCFA(item.price)}</span>
         </div>
       </div>
 
@@ -140,12 +138,12 @@ export default function Detail({ item, onBack, onAdded }) {
         {item.optionGroups?.map(group => {
           if (group.type === "single") {
             return (
-              <div key={group.id} className="bg-white px-5 py-5 shadow-sm">
-                <div className="flex items-center justify-between mb-4">
-                  <h3 className="font-display text-[17px] font-bold text-ink">{group.title}</h3>
-                  {group.required && <span className="bg-gray-100 text-gray-500 px-2 py-0.5 rounded text-[11px] font-bold uppercase tracking-wide">Obligatoire</span>}
+              <div key={group.id} className="bg-white px-5 py-4 shadow-sm">
+                <div className="flex items-center justify-between mb-3">
+                  <h3 className="font-display text-[16px] font-bold text-ink">{group.title}</h3>
+                  {group.required && <span className="bg-gray-100 text-gray-500 px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wide">Obligatoire</span>}
                 </div>
-                <div className="space-y-4">
+                <div className="space-y-3">
                   {group.options.map(opt => {
                     const selected = selections[group.id] === opt.id;
                     return (
@@ -170,15 +168,15 @@ export default function Detail({ item, onBack, onAdded }) {
           } else if (group.type === "multiple") {
             const selectedCount = Object.values(selections[group.id] || {}).filter(Boolean).length;
             return (
-              <div key={group.id} className="bg-white px-5 py-5 shadow-sm">
-                <div className="flex items-center justify-between mb-4">
+              <div key={group.id} className="bg-white px-5 py-4 shadow-sm">
+                <div className="flex items-center justify-between mb-3">
                   <div>
-                    <h3 className="font-display text-[17px] font-bold text-ink">{group.title}</h3>
-                    {group.max && <p className="text-[12px] text-muted mt-0.5">Choisis jusqu'à {group.max} options</p>}
+                    <h3 className="font-display text-[16px] font-bold text-ink">{group.title}</h3>
+                    {group.max && <p className="text-[11px] text-muted mt-0.5">Choisis jusqu'à {group.max} options</p>}
                   </div>
-                  {group.max && <span className="text-[12px] font-bold text-primary bg-primary/10 px-2 py-1 rounded">{selectedCount}/{group.max}</span>}
+                  {group.max && <span className="text-[11px] font-bold text-primary bg-primary/10 px-2 py-1 rounded">{selectedCount}/{group.max}</span>}
                 </div>
-                <div className="space-y-4">
+                <div className="space-y-3">
                   {group.options.map(opt => {
                     const selected = !!(selections[group.id] && selections[group.id][opt.id]);
                     const disabled = !selected && group.max && selectedCount >= group.max;
@@ -208,7 +206,7 @@ export default function Detail({ item, onBack, onAdded }) {
       </div>
 
       {/* Sticky Bottom Bar */}
-      <div className="fixed bottom-0 left-1/2 z-50 flex w-full max-w-[430px] -translate-x-1/2 items-center gap-3 bg-white px-5 py-4 shadow-[0_-10px_30px_rgba(0,0,0,0.06)] border-t border-gray-100">
+      <div className="fixed bottom-[68px] left-0 right-0 z-40 flex w-full items-center gap-3 bg-white px-5 py-3 shadow-[0_-10px_30px_rgba(0,0,0,0.06)] border-t border-gray-100">
         <Stepper qty={qty} onChange={(v) => setQty(Math.max(1, v))} />
         <button
           onClick={handleAdd}

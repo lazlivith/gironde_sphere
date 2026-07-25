@@ -10,19 +10,15 @@
 
 body {
   font-family: 'Inter', sans-serif;
-  background: #E8E8E8;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
+  background: #fff;
+  min-height: 100dvh;
 }
 
 #root {
   width: 100%;
-  max-width: 430px;
-  min-height: 100vh;
+  min-height: 100dvh;
   background: #fff;
   position: relative;
-  overflow: hidden;
 }
 
 .font-display {

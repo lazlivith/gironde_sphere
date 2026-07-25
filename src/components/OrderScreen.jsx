@@ -1,12 +1,22 @@
 /* OrderScreen.jsx — schéma actuel (menu.recommendations) */
 import { useCart } from "../context/CartContext";
-import menu from "../data/menu.json";
+import { useMenu } from "../context/MenuContext";
 import { BackButton, FCFA } from "./ui";
 
-const RECO = menu.recommendations || [];
-
 export default function OrderScreen({ onBack, onCheckout }) {
-  const { lines, updateQty, removeLine, subtotal } = useCart();
+  const { menu } = useMenu();
+  const allItems = menu.categories.flatMap((c) => c.items);
+  const { lines, addLine, updateQty, removeLine, subtotal } = useCart();
+
+  // Dérivation des suggestions "Upsell" (Ventes croisées)
+  const cartNames = new Set(lines.map(l => l.name));
+  const upsellCandidates = allItems.filter(item => {
+    // On sélectionne des articles peu coûteux (<= 2500 FCFA), avec un prix fixe, non présents dans le panier
+    return item.price && item.price <= 2500 && !cartNames.has(item.name);
+  });
+
+  // On en prend 3 aléatoirement
+  const suggestions = [...upsellCandidates].sort(() => 0.5 - Math.random()).slice(0, 3);
 
   return (
     <div className="min-h-screen bg-white">
@@ -77,22 +87,29 @@ export default function OrderScreen({ onBack, onCheckout }) {
           </>
         )}
 
-        {/* Recommandations */}
-        {RECO.length > 0 && (
-          <div className="mt-8">
-            <h3 className="font-display text-[16px] font-bold text-ink mb-3">Recommandations</h3>
+        {/* Upsell / Complétez votre repas */}
+        {lines.length > 0 && suggestions.length > 0 && (
+          <div className="mt-8 animate-fade-up">
+            <h3 className="font-display text-[16px] font-bold text-ink mb-3">Complétez votre repas ! 🍟🥤</h3>
             <div className="flex gap-3 overflow-x-auto no-scrollbar -mx-1 px-1">
-              {RECO.map((rec) => (
-                <div key={rec.id} className="flex-shrink-0 w-28 rounded-2xl overflow-hidden bg-[#FFF5EE] relative">
-                  <div className="h-24 flex items-center justify-center">
-                    <span className="text-4xl">{rec.emoji}</span>
+              {suggestions.map((rec) => (
+                <div key={rec.id} className="flex-shrink-0 w-32 rounded-2xl overflow-hidden bg-white shadow-sm border border-gray-100 relative transition-transform active:scale-95">
+                  <div className="h-24 bg-[#FFF5EE] flex items-center justify-center">
+                    {rec.image ? (
+                      <img src={rec.image} alt={rec.name} className="h-full w-full object-cover" />
+                    ) : (
+                      <span className="text-4xl">{rec.emoji || "🍽"}</span>
+                    )}
                   </div>
-                  <button className="absolute top-2 right-2 flex h-6 w-6 items-center justify-center rounded-full bg-primary text-white">
-                    <svg width="10" height="10" viewBox="0 0 12 12" fill="currentColor"><path d="M5 0h2v5h5v2H7v5H5V7H0V5h5z"/></svg>
+                  <button 
+                    onClick={() => addLine({ name: rec.name, unitPrice: rec.price, qty: 1 })}
+                    className="absolute top-2 right-2 flex h-7 w-7 items-center justify-center rounded-full bg-primary text-white shadow-md"
+                  >
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor"><path d="M5 0h2v5h5v2H7v5H5V7H0V5h5z"/></svg>
                   </button>
-                  <div className="bg-white px-2 py-2">
-                    <p className="text-[11px] font-semibold text-ink truncate">{rec.name}</p>
-                    <p className="text-[12px] font-bold text-primary">{FCFA(rec.price)}</p>
+                  <div className="px-2.5 py-2.5">
+                    <p className="text-[12px] font-semibold text-ink truncate">{rec.name}</p>
+                    <p className="text-[13px] font-bold text-primary mt-0.5">{FCFA(rec.price)}</p>
                   </div>
                 </div>
               ))}
@@ -102,7 +119,7 @@ export default function OrderScreen({ onBack, onCheckout }) {
       </div>
 
       {lines.length > 0 && (
-        <div className="fixed bottom-0 left-1/2 z-50 w-full max-w-[430px] -translate-x-1/2 bg-white px-5 py-4 shadow-[0_-4px_20px_rgba(0,0,0,0.08)]">
+        <div className="fixed bottom-[68px] left-0 right-0 z-40 w-full bg-white px-5 py-3 shadow-[0_-4px_20px_rgba(0,0,0,0.08)] border-t border-gray-100">
           <button
             onClick={onCheckout}
             className="flex w-full items-center justify-between rounded-full bg-primary px-6 py-4 text-[15px] font-bold text-white shadow-lg shadow-primary/30"

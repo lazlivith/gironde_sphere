@@ -4,12 +4,13 @@ export default {
   theme: {
     extend: {
       colors: {
-        primary: "#FF6B2C",
-        "primary-light": "#FFF0E8",
-        ink: "#1A1A1A",
+        primary: "#8A9A86", // Sage Green
+        "primary-light": "#A3B19F",
+        ink: "#1A1A1A", // Noir Anthracite
         muted: "#9E9E9E",
-        surface: "#F5F5F5",
-        cream: "#FFF8F3",
+        surface: "#F5EFEB", // Warm Cream
+        cream: "#F5EFEB", 
+        promo: "#E53E3E", // Rouge Promo
       },
       fontFamily: {
         sans: ["Inter", "sans-serif"],

@@ -6,6 +6,30 @@
   "deliveryTime": "30-50 min",
   "hours": "10:00 - 22:00",
   "tagline": "Le meilleur fast-food de Songolo, Pointe-Noire.",
+  "popularSearchTags": [
+    "burger",
+    "tacos",
+    "sandwich",
+    "jus",
+    "crépe",
+    "poulet",
+    "gironde",
+    "formule",
+    "salade"
+  ],
+  "promoTabs": [
+    {
+      "id": "offres",
+      "label": "Promos 🔥",
+      "type": "promo"
+    },
+    {
+      "id": "formules",
+      "label": "Formules",
+      "type": "category",
+      "categoryId": "formules"
+    }
+  ],
   "banners": [
     {
       "id": "b1",
@@ -13,6 +37,13 @@
       "cta": "Commander",
       "bg": "#FF6B2C",
       "image": "/assets/promos/formulexxxl-tacos-gironde.jpg"
+    },
+    {
+      "id": "b2",
+      "title": "Offre Spéciale\n-500F sur le Tacos Signature",
+      "cta": "En profiter",
+      "bg": "#7CB342",
+      "image": "/assets/promos/promo-banner-poster.png"
     }
   ],
   "categories": [
@@ -24,11 +55,6 @@
       "items": [
         {
           "id": "tacos-poulet",
-          "name": "Tacos Poulet",
-          "description": "Tacos généreux au poulet mariné, frites et sauce fromagère",
-          "price": 2500,
-          "emoji": "🌮",
-          "image": "/assets/products/tacos-poulet.jpg",
           "type": "complex",
           "optionGroups": [
             {
@@ -113,11 +139,6 @@
         },
         {
           "id": "tacos-viandes",
-          "name": "Tacos Viandes",
-          "description": "Tacos multiviandes avec sauce maison",
-          "price": 3000,
-          "emoji": "🌮",
-          "image": "/assets/products/tacos-viandes.jpg",
           "type": "complex",
           "optionGroups": [
             {
@@ -202,13 +223,7 @@
         },
         {
           "id": "tacos-sphere",
-          "name": "Tacos Sphère",
-          "description": "Le fameux Tacos signature",
-          "price": 3500,
-          "emoji": "🌮",
-          "image": "/assets/products/tacos-sphère.jpg",
           "type": "complex",
-          "tag": "Signature",
           "optionGroups": [
             {
               "id": "taille",
@@ -292,11 +307,6 @@
         },
         {
           "id": "sandwich-poulet",
-          "name": "Sandwich Poulet",
-          "description": "Sandwich au poulet frais et crudités",
-          "price": 2000,
-          "emoji": "🥪",
-          "image": "/assets/products/sandwich-poulet.webp",
           "type": "complex",
           "optionGroups": [
             {
@@ -358,11 +368,6 @@
         },
         {
           "id": "sandwich-steak",
-          "name": "Sandwich Steak",
-          "description": "Sandwich savoureux au steak haché",
-          "price": 2500,
-          "emoji": "🥪",
-          "image": "/assets/products/sandwich-steak.png",
           "type": "complex",
           "optionGroups": [
             {
@@ -424,11 +429,6 @@
         },
         {
           "id": "sandwich-mixte",
-          "name": "Sandwich Mixte",
-          "description": "Mélange parfait de viandes en sandwich",
-          "price": 3000,
-          "emoji": "🥪",
-          "image": "/assets/products/sandwich-mixte.jpg",
           "type": "complex",
           "optionGroups": [
             {
@@ -490,11 +490,6 @@
         },
         {
           "id": "boxe-sandwich",
-          "name": "Boîte Sandwich",
-          "description": "Délicieux sandwich en boîte avec frites",
-          "price": 3500,
-          "emoji": "🍱",
-          "image": "/assets/products/boxe-sandwich.jpeg",
           "type": "complex",
           "optionGroups": [
             {
@@ -564,11 +559,6 @@
       "items": [
         {
           "id": "salade-cesar",
-          "name": "Salade César",
-          "description": "Salade croquante, poulet, parmesan et sauce césar",
-          "price": 2500,
-          "emoji": "🥗",
-          "image": "/assets/products/salade-cesar.webp",
           "type": "complex",
           "optionGroups": [
             {
@@ -620,13 +610,7 @@
         },
         {
           "id": "salade-gironde",
-          "name": "Salade Gironde",
-          "description": "Salade composée signature de la maison",
-          "price": 3000,
-          "emoji": "🥗",
-          "image": "/assets/products/salade-gironde.jpg",
           "type": "complex",
-          "tag": "Nouveau",
           "optionGroups": [
             {
               "id": "vinaigrette",
@@ -677,11 +661,6 @@
         },
         {
           "id": "salade-poulet",
-          "name": "Salade Poulet",
-          "description": "Délicieuse salade au poulet rôti",
-          "price": 2500,
-          "emoji": "🥗",
-          "image": "/assets/products/salade-poulet.webp",
           "type": "complex",
           "optionGroups": [
             {
@@ -733,11 +712,6 @@
         },
         {
           "id": "salade",
-          "name": "Salade Simple",
-          "description": "Salade végétarienne fraîche du jour",
-          "price": 1500,
-          "emoji": "🥗",
-          "image": "/assets/products/salade.webp",
           "type": "complex",
           "optionGroups": [
             {
@@ -797,62 +771,31 @@
       "items": [
         {
           "id": "formule-gironde",
-          "name": "Formule Gironde",
-          "description": "Un repas complet pour les gourmands",
-          "price": 5000,
-          "emoji": "🍟",
-          "image": "/assets/promos/formule-gironde.webp",
           "type": "complex",
-          "tag": "Populaire",
           "optionGroups": []
         },
         {
           "id": "formule-burger",
-          "name": "Formule Burger",
-          "description": "Burger, frites et boisson",
-          "price": 4000,
-          "emoji": "🍔",
-          "image": "/assets/promos/formule-burger.webp",
           "type": "complex",
           "optionGroups": []
         },
         {
           "id": "formule-burger-sandwich",
-          "name": "Formule Burger & Sandwich",
-          "description": "Le duo parfait à partager",
-          "price": 6500,
-          "emoji": "🥪",
-          "image": "/assets/promos/formule-burger-sandwich.webp",
           "type": "complex",
           "optionGroups": []
         },
         {
           "id": "formule-xxl",
-          "name": "Formule XXL",
-          "description": "Pour les très grosses faims",
-          "price": 7500,
-          "emoji": "🔥",
-          "image": "/assets/promos/formule-xxl.jpg",
           "type": "complex",
           "optionGroups": []
         },
         {
           "id": "formules-quatre-personne",
-          "name": "Formule 4 Personnes",
-          "description": "Le menu idéal pour la famille ou les amis",
-          "price": 15000,
-          "emoji": "👨‍👩‍👧‍👦",
-          "image": "/assets/promos/formules-quatre-personne.jpg",
           "type": "complex",
           "optionGroups": []
         },
         {
           "id": "formulexxxl-tacos",
-          "name": "Formule XXXL Tacos",
-          "description": "Le Tacos géant façon Gironde",
-          "price": 8000,
-          "emoji": "🌮",
-          "image": "/assets/promos/formulexxxl-tacos-gironde.jpg",
           "type": "complex",
           "optionGroups": []
         }
@@ -866,11 +809,6 @@
       "items": [
         {
           "id": "crepes-fraise",
-          "name": "Crêpe aux Fraises",
-          "description": "Crêpe gourmande aux fraises fraîches",
-          "price": 1500,
-          "emoji": "🍓",
-          "image": "/assets/products/crepes-fraise.webp",
           "type": "complex",
           "optionGroups": [
             {
@@ -921,11 +859,6 @@
         },
         {
           "id": "crepes-simple",
-          "name": "Crêpe Simple",
-          "description": "Crêpe nature ou sucrée",
-          "price": 1000,
-          "emoji": "🥞",
-          "image": "/assets/products/crepes-simple.webp",
           "type": "complex",
           "optionGroups": [
             {
@@ -984,11 +917,6 @@
       "items": [
         {
           "id": "cocktail-fruit",
-          "name": "Cocktail de Fruits",
-          "description": "Mélange exotique de fruits de saison",
-          "price": 2000,
-          "emoji": "🍹",
-          "image": "/assets/promos/cocktail-fruit.webp",
           "type": "complex",
           "optionGroups": [
             {
@@ -1041,11 +969,6 @@
         },
         {
           "id": "jus-de-fruits",
-          "name": "Jus de Fruits",
-          "description": "Jus de fruits frais pressés",
-          "price": 1500,
-          "emoji": "🧃",
-          "image": "/assets/products/jus-de-fruits.webp",
           "type": "complex",
           "optionGroups": [
             {
@@ -1098,11 +1021,6 @@
         },
         {
           "id": "jus-de-fruits-local",
-          "name": "Jus Local",
-          "description": "Délicieux jus de fruits locaux",
-          "price": 1000,
-          "emoji": "🥭",
-          "image": "/assets/promos/jus-de-fruits-local.jpg",
           "type": "complex",
           "optionGroups": [
             {
@@ -1155,11 +1073,6 @@
         },
         {
           "id": "boissons-frais",
-          "name": "Boissons Fraîches",
-          "description": "Canettes et sodas bien frais",
-          "price": 800,
-          "emoji": "🥤",
-          "image": "/assets/promos/boissons-frais.jpeg",
           "type": "complex",
           "optionGroups": [
             {
@@ -1189,11 +1102,6 @@
         },
         {
           "id": "formule-boissons-fruits",
-          "name": "Pack Boissons Fraîches",
-          "description": "Assortiment de boissons fruitées",
-          "price": 3000,
-          "emoji": "🥤",
-          "image": "/assets/promos/formule-boissons-de-fruits-frais.webp",
           "type": "complex",
           "optionGroups": [
             {
@@ -1246,17 +1154,6 @@
       "emoji": "🥗",
       "image": "/assets/products/salade-cesar.webp"
     }
-  ],
-  "popularSearchTags": [
-    "burger",
-    "tacos",
-    "sandwich",
-    "jus",
-    "crépe",
-    "poulet",
-    "gironde",
-    "formule",
-    "salade"
   ],
   "deliveryZones": [
     {

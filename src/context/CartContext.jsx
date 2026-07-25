@@ -37,6 +37,11 @@ export function CartProvider({ children }) {
 
   const clearCart = useCallback(() => setLines([]), []);
 
+  const setCartFromHistory = useCallback((newLines) => {
+    const linesWithNewIds = newLines.map(l => ({ ...l, lineId: crypto.randomUUID() }));
+    setLines(linesWithNewIds);
+  }, []);
+
   const subtotal = useMemo(
     () => lines.reduce((sum, l) => sum + l.unitPrice * l.qty, 0),
     [lines]
@@ -44,7 +49,7 @@ export function CartProvider({ children }) {
 
   const itemCount = useMemo(() => lines.reduce((sum, l) => sum + l.qty, 0), [lines]);
 
-  const value = { lines, addLine, updateQty, removeLine, clearCart, subtotal, itemCount };
+  const value = { lines, addLine, updateQty, removeLine, clearCart, setCartFromHistory, subtotal, itemCount };
 
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>;
 }

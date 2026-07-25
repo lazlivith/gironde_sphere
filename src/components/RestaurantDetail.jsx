@@ -1,11 +1,11 @@
 /* RestaurantDetail.jsx — schéma actuel (menu.brand, categories > items) */
 import { useState } from "react";
-import menu from "../data/menu.json";
+import { useMenu } from "../context/MenuContext";
 import { BackButton, HeartButton, StarRating, FCFA } from "./ui";
 
-const allItems = menu.categories.flatMap((c) => c.items);
-
 export default function RestaurantDetail({ restaurant, onBack, onOpenItem }) {
+  const { menu } = useMenu();
+  const allItems = menu.categories.flatMap((c) => c.items);
   const [isFav, setIsFav] = useState(false);
 
   return (
