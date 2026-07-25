@@ -1,7 +1,7 @@
 /* PromoPage.jsx — Section Promotions, Formules, Vidéos */
 import { useState } from "react";
 import { useMenu } from "../context/MenuContext";
-import { StatusBar, FCFA } from "./ui";
+import { StatusBar, FCFA } from "../components/ui/ui";
 
 function ProductThumb({ item }) {
   return item.image ? (

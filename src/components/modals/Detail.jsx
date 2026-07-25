@@ -1,7 +1,7 @@
 /* Detail.jsx — Food Details (Glovo Style) */
 import { useState, useEffect } from "react";
-import { useCart } from "../context/CartContext";
-import { BackButton, CloseButton, HeartButton, Stepper, FCFA } from "./ui";
+import { useCart } from "../../context/CartContext";
+import { BackButton, CloseButton, HeartButton, Stepper, FCFA } from "../ui/ui";
 
 export default function Detail({ item, onBack, onAdded }) {
   const { addLine } = useCart();

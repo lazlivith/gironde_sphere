@@ -1,7 +1,7 @@
 /* RestaurantDetail.jsx — schéma actuel (menu.brand, categories > items) */
 import { useState } from "react";
-import { useMenu } from "../context/MenuContext";
-import { BackButton, HeartButton, StarRating, FCFA } from "./ui";
+import { useMenu } from "../../context/MenuContext";
+import { BackButton, HeartButton, StarRating, FCFA } from "../ui/ui";
 
 export default function RestaurantDetail({ restaurant, onBack, onOpenItem }) {
   const { menu } = useMenu();

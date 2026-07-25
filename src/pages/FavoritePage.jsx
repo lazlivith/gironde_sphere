@@ -1,7 +1,7 @@
 /* FavoritePage.jsx — schéma actuel (categories > items, menu.brand) */
 import { useState } from "react";
 import menu from "../data/menu.json";
-import { FCFA } from "./ui";
+import { FCFA } from "../components/ui/ui";
 
 const allItems = menu.categories.flatMap((c) => c.items);
 const FAVORITE_ITEMS = allItems.slice(0, 3);

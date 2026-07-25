@@ -3,17 +3,17 @@ import { CartProvider, useCart } from "./context/CartContext";
 import { MenuProvider, useMenu } from "./context/MenuContext";
 
 // Screens
-import Splash from "./components/Splash";
-import Home from "./components/Home";
-import CategoriesPage from "./components/CategoriesPage";
-import SearchPage from "./components/SearchPage";
-import PromoPage from "./components/PromoPage";
-import RestaurantDetail from "./components/RestaurantDetail";
-import Detail from "./components/Detail";
-import OrderScreen from "./components/OrderScreen";
-import Checkout from "./components/Checkout";
-import BottomNav from "./components/BottomNav";
-import HistoryScreen from "./components/HistoryScreen";
+import Splash from "./components/layout/Splash";
+import Home from "./pages/Home";
+import CategoriesPage from "./pages/CategoriesPage";
+import SearchPage from "./pages/SearchPage";
+import PromoPage from "./pages/PromoPage";
+import RestaurantDetail from "./components/modals/RestaurantDetail";
+import Detail from "./components/modals/Detail";
+import OrderScreen from "./components/modals/OrderScreen";
+import Checkout from "./components/modals/Checkout";
+import BottomNav from "./components/layout/BottomNav";
+import HistoryScreen from "./components/modals/HistoryScreen";
 
 function Shell() {
   const [splashDone, setSplashDone] = useState(false);

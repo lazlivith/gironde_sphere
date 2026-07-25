@@ -1,7 +1,7 @@
 /* OrderScreen.jsx — schéma actuel (menu.recommendations) */
-import { useCart } from "../context/CartContext";
-import { useMenu } from "../context/MenuContext";
-import { BackButton, FCFA } from "./ui";
+import { useCart } from "../../context/CartContext";
+import { useMenu } from "../../context/MenuContext";
+import { BackButton, FCFA } from "../ui/ui";
 
 export default function OrderScreen({ onBack, onCheckout }) {
   const { menu } = useMenu();

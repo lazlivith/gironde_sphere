@@ -1,10 +1,10 @@
 /* Checkout.jsx — schéma actuel (menu.deliveryZones avec id/label) */
 import { useState } from "react";
-import { useCart } from "../context/CartContext";
-import { useMenu } from "../context/MenuContext";
-import { sendOrderToWhatsApp } from "../services/whatsappService";
-import { isStoreOpen } from "../utils/time";
-import { BackButton, FCFA } from "./ui";
+import { useCart } from "../../context/CartContext";
+import { useMenu } from "../../context/MenuContext";
+import { sendOrderToWhatsApp } from "../../services/whatsappService";
+import { isStoreOpen } from "../../utils/time";
+import { BackButton, FCFA } from "../ui/ui";
 
 export default function Checkout({ onBack }) {
   const { menu } = useMenu();

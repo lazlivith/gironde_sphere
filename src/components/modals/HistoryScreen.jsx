@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import { useCart } from "../context/CartContext";
-import { BackButton, FCFA } from "./ui";
+import { useCart } from "../../context/CartContext";
+import { BackButton, FCFA } from "../ui/ui";
 
 export default function HistoryScreen({ onBack, onReorder }) {
   const { setCartFromHistory } = useCart();

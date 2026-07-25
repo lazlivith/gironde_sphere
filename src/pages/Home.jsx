@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react";
 import { useCart } from "../context/CartContext";
 import { useMenu } from "../context/MenuContext";
-import { StatusBar, StarRating, FCFA } from "./ui";
+import { StatusBar, StarRating, FCFA } from "../components/ui/ui";
 import { isStoreOpen } from "../utils/time";
 import { useInstallPrompt } from "../utils/useInstallPrompt";
 

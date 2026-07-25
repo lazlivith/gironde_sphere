@@ -1,7 +1,7 @@
 /* SearchPage.jsx — schéma actuel (popularSearchTags + categories > items) */
 import { useState } from "react";
 import { useMenu } from "../context/MenuContext";
-import { FCFA } from "./ui";
+import { FCFA } from "../components/ui/ui";
 
 function ProductThumb({ item }) {
   return item.image ? (

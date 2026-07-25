@@ -1,7 +1,7 @@
 /* RestaurantsPage.jsx — Restaurants screen (Figma faithful) */
 import { useState } from "react";
 import menu from "../data/menu.json";
-import { StatusBar, StarRating, FCFA } from "./ui";
+import { StatusBar, StarRating, FCFA } from "../components/ui/ui";
 
 const CATEGORIES = menu.categories.map((c) => ({
   id: c.id,
