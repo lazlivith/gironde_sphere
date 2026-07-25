@@ -116,7 +116,7 @@ export default function Home({ onOpenItem, onOpenCart, onNavigate, onOpenHistory
       {deferredPrompt && (
         <div className="mx-4 mt-6 overflow-hidden rounded-3xl bg-white border border-gray-100 p-5 flex items-center justify-between gap-4 animate-fade-up shadow-sm">
           <div className="flex items-center gap-4">
-            <img src="/icons/icon-192.png" alt="Logo" className="w-12 h-12 rounded-2xl shadow-sm border border-gray-50" />
+            <img src="/assets/Logo.png" alt="Logo" className="w-12 h-12 rounded-2xl shadow-sm border border-gray-50" />
             <div>
               <h3 className="font-display text-[15px] font-bold text-ink leading-tight">Installer l'app</h3>
               <p className="text-[12px] text-muted mt-1 leading-tight">Accès direct depuis l'écran d'accueil</p>

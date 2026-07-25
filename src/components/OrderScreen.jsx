@@ -119,6 +119,7 @@ export default function OrderScreen({ onBack, onCheckout }) {
           </div>
         )}
       </div>
+      </div>
 
       {lines.length > 0 && (
         <div className="flex-shrink-0 w-full bg-white px-5 py-4 shadow-[0_-10px_30px_rgba(0,0,0,0.06)] border-t border-gray-100 z-40">
