@@ -1,4 +1,4 @@
-﻿/* Checkout.jsx â€” schÃ©ma actuel (menu.deliveryZones avec id/label) */
+﻿/* Checkout.jsx â€” schéma actuel (menu.deliveryZones avec id/label) */
 import { useState } from "react";
 import { useCart } from "../../context/CartContext";
 import { useMenu } from "../../context/MenuContext";
@@ -34,7 +34,7 @@ export default function Checkout({ onBack }) {
   const handleSubmit = (e) => {
     if (e) e.preventDefault();
     if (!canSubmit) {
-      setError("Merci de renseigner votre nom et votre numÃ©ro de tÃ©lÃ©phone.");
+      setError("Merci de renseigner votre nom et votre numéro de téléphone.");
       return;
     }
     setError("");
@@ -67,10 +67,10 @@ export default function Checkout({ onBack }) {
       whatsappNumber: menu.whatsappNumber,
     };
 
-    // MÃ©morisation des informations du client pour la prochaine commande
+    // Mémorisation des informations du client pour la prochaine commande
     localStorage.setItem("songolo_customer", JSON.stringify(customer));
 
-    // MÃ©morisation dans l'historique des commandes
+    // Mémorisation dans l'historique des commandes
     const orderRecord = {
       id: crypto.randomUUID(),
       date: new Date().toISOString(),
@@ -112,9 +112,9 @@ export default function Checkout({ onBack }) {
           />
         </div>
 
-        {/* TÃ©lÃ©phone */}
+        {/* Téléphone */}
         <div>
-          <label className="mb-1.5 block text-[12px] font-bold uppercase tracking-wide text-muted">TÃ©lÃ©phone</label>
+          <label className="mb-1.5 block text-[12px] font-bold uppercase tracking-wide text-muted">Téléphone</label>
           <input
             value={customer.phone}
             onChange={(e) => setCustomer((p) => ({ ...p, phone: e.target.value }))}
@@ -123,15 +123,15 @@ export default function Checkout({ onBack }) {
           />
         </div>
 
-        {/* Adresse prÃ©cise */}
+        {/* Adresse précise */}
         <div>
           <label className="mb-1.5 block text-[12px] font-bold uppercase tracking-wide text-muted">
-            Adresse prÃ©cise <span className="normal-case font-normal text-muted">(optionnel)</span>
+            Adresse précise <span className="normal-case font-normal text-muted">(optionnel)</span>
           </label>
           <input
             value={customer.address}
             onChange={(e) => setCustomer((p) => ({ ...p, address: e.target.value }))}
-            placeholder="Ã€ cÃ´tÃ© du marchÃ©, maison bleue..."
+            placeholder="À côté du marché, maison bleue..."
             className="w-full rounded-2xl border-2 border-gray-100 bg-surface px-4 py-3.5 text-[15px] text-ink outline-none focus:border-primary focus-visible:ring-2 focus-visible:ring-primary/50 transition"
           />
         </div>
@@ -192,7 +192,7 @@ export default function Checkout({ onBack }) {
               Confirmer via WhatsApp â€” {FCFA(total)}
             </>
           ) : (
-             "Cuisines fermÃ©es (10h - 22h30)"
+             "Cuisines fermées (10h - 22h30)"
           )}
         </button>
       </div>

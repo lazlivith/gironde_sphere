@@ -1,7 +1,7 @@
 ﻿/* OrderScreen.jsx — schéma actuel (menu.recommendations) */
 import { useCart } from "../../context/CartContext";
 import { useMenu } from "../../context/MenuContext";
-import { BackButton, FCFA } from "../ui/ui";
+import { LazyImage, BackButton, FCFA } from "../ui/ui";
 
 export default function OrderScreen({ onBack, onCheckout }) {
   const { menu } = useMenu();
@@ -34,7 +34,7 @@ export default function OrderScreen({ onBack, onCheckout }) {
 
         {lines.length === 0 ? (
           <div className="flex flex-col items-center justify-center py-16 text-center">
-            <span className="text-5xl">ðŸ›’</span>
+            <span className="text-5xl">🛒</span>
             <p className="mt-4 text-[15px] font-semibold text-ink">Votre commande est vide</p>
             <p className="mt-1 text-[13px] text-muted">Ajoutez des plats depuis le menu</p>
             <button onClick={onBack} className="mt-6 rounded-full bg-primary px-6 py-3 text-[14px] font-bold text-white">
@@ -70,7 +70,7 @@ export default function OrderScreen({ onBack, onCheckout }) {
                       <button
                         onClick={() => updateQty(line.lineId, line.qty - 1)}
                         className="flex h-7 w-7 items-center justify-center rounded-full bg-primary text-white text-sm font-bold transition-transform active:scale-90"
-                      >âˆ’</button>
+                      >−</button>
                     )}
                     <span className="w-5 text-center text-[13px] font-semibold text-ink">{line.qty}</span>
                     <button
