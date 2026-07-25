@@ -4,8 +4,8 @@ export default {
   theme: {
     extend: {
       colors: {
-        primary: "#8A9A86", // Sage Green
-        "primary-light": "#A3B19F",
+        primary: "#687a64", // Sage Green Assombri (WCAG AA > 4.5:1 avec texte blanc)
+        "primary-light": "#8A9A86", // L'ancien primary utilisé comme hover/light
         ink: "#1A1A1A", // Noir Anthracite
         muted: "#9E9E9E",
         surface: "#F5EFEB", // Warm Cream

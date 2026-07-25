@@ -49,14 +49,15 @@ const NAV_ITEMS = [
 
 export default function BottomNav({ active, onNavigate }) {
   return (
-    <nav className="fixed bottom-0 left-0 right-0 z-50 flex w-full items-center justify-around border-t border-gray-100 bg-white px-2 py-2 pb-safe shadow-[0_-4px_20px_rgba(0,0,0,0.06)]">
+    <nav aria-label="Navigation principale" className="fixed bottom-0 left-0 right-0 z-50 flex w-full items-center justify-around border-t border-gray-100 bg-white px-2 py-2 pb-safe shadow-[0_-4px_20px_rgba(0,0,0,0.06)]">
       {NAV_ITEMS.map((item) => {
         const isActive = active === item.id;
         return (
           <button
             key={item.id}
             onClick={() => onNavigate(item.id)}
-            className="flex flex-col items-center gap-1 px-3 py-1"
+            aria-label={item.label}
+            className="flex flex-col items-center gap-1 px-3 py-1 rounded-xl focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none"
           >
             {item.icon(isActive)}
             <span

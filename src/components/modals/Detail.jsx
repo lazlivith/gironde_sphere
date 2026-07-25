@@ -223,3 +223,4 @@ export default function Detail({ item, onBack, onAdded }) {
     </div>
   );
 }
+

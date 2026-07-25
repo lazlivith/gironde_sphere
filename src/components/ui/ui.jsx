@@ -7,7 +7,7 @@ export function BackButton({ onClick }) {
   return (
     <button
       onClick={onClick}
-      className="flex h-9 w-9 items-center justify-center rounded-full bg-[#F5F5F5] text-ink transition-transform active:scale-90 hover:bg-gray-200"
+      className="flex h-9 w-9 items-center justify-center rounded-full bg-[#F5F5F5] text-ink transition-transform active:scale-90 focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none hover:bg-gray-200 focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none"
       aria-label="Retour"
     >
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
@@ -22,7 +22,7 @@ export function CloseButton({ onClick }) {
   return (
     <button
       onClick={onClick}
-      className="flex h-9 w-9 items-center justify-center rounded-full bg-[#F5F5F5] text-ink transition-transform active:scale-90 hover:bg-gray-200"
+      className="flex h-9 w-9 items-center justify-center rounded-full bg-[#F5F5F5] text-ink transition-transform active:scale-90 focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none hover:bg-gray-200 focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none"
       aria-label="Fermer"
     >
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
@@ -79,7 +79,7 @@ export function Stepper({ qty, onChange, size = "md" }) {
     <div className="flex items-center gap-3">
       <button
         onClick={() => onChange(qty - 1)}
-        className={`${dims} flex items-center justify-center rounded-full bg-primary font-bold text-white shadow-sm transition-transform active:scale-90`}
+        className={`${dims} flex items-center justify-center rounded-full bg-primary font-bold text-white shadow-sm transition-transform active:scale-90 focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none`}
         aria-label="Diminuer"
       >
         <svg width="12" height="2" viewBox="0 0 12 2" fill="currentColor"><rect width="12" height="2" rx="1"/></svg>
@@ -87,7 +87,7 @@ export function Stepper({ qty, onChange, size = "md" }) {
       <span className="min-w-[20px] text-center text-[15px] font-semibold text-ink">{qty}</span>
       <button
         onClick={() => onChange(qty + 1)}
-        className={`${dims} flex items-center justify-center rounded-full bg-primary font-bold text-white shadow-sm transition-transform active:scale-90`}
+        className={`${dims} flex items-center justify-center rounded-full bg-primary font-bold text-white shadow-sm transition-transform active:scale-90 focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none`}
         aria-label="Augmenter"
       >
         <svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor"><path d="M5 0h2v5h5v2H7v5H5V7H0V5h5z"/></svg>
@@ -101,7 +101,7 @@ export function HeartButton({ active = false, onClick, className = "" }) {
   return (
     <button
       onClick={onClick}
-      className={`flex h-9 w-9 items-center justify-center rounded-full ${active ? 'bg-red-50' : 'bg-white'} shadow-sm transition-all duration-300 active:scale-75 ${active ? 'animate-pop' : ''} ${className}`}
+      className={`flex h-9 w-9 items-center justify-center rounded-full ${active ? 'bg-red-50' : 'bg-white'} shadow-sm transition-all duration-300 active:scale-75 focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none ${active ? 'animate-pop' : ''} ${className}`}
       aria-label={active ? "Retirer des favoris" : "Ajouter aux favoris"}
     >
       <svg width="18" height="18" viewBox="0 0 24 24" fill={active ? "#FF3B30" : "none"} stroke={active ? "#FF3B30" : "#9E9E9E"} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -125,3 +125,4 @@ export function StarRating({ value }) {
 
 // ── Price display ──
 export const FCFA = (n) => `${n.toLocaleString("fr-FR")} FCFA`;
+

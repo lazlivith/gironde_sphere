@@ -108,7 +108,7 @@ export default function Checkout({ onBack }) {
             value={customer.name}
             onChange={(e) => setCustomer((p) => ({ ...p, name: e.target.value }))}
             placeholder="Jean Dupont"
-            className="w-full rounded-2xl border-2 border-gray-100 bg-surface px-4 py-3.5 text-[15px] text-ink outline-none focus:border-primary transition"
+            className="w-full rounded-2xl border-2 border-gray-100 bg-surface px-4 py-3.5 text-[15px] text-ink outline-none focus:border-primary focus-visible:ring-2 focus-visible:ring-primary/50 transition"
           />
         </div>
 
@@ -119,7 +119,7 @@ export default function Checkout({ onBack }) {
             value={customer.phone}
             onChange={(e) => setCustomer((p) => ({ ...p, phone: e.target.value }))}
             placeholder="+242 06 XXX XX XX"
-            className="w-full rounded-2xl border-2 border-gray-100 bg-surface px-4 py-3.5 text-[15px] text-ink outline-none focus:border-primary transition"
+            className="w-full rounded-2xl border-2 border-gray-100 bg-surface px-4 py-3.5 text-[15px] text-ink outline-none focus:border-primary focus-visible:ring-2 focus-visible:ring-primary/50 transition"
           />
         </div>
 
@@ -132,7 +132,7 @@ export default function Checkout({ onBack }) {
             value={customer.address}
             onChange={(e) => setCustomer((p) => ({ ...p, address: e.target.value }))}
             placeholder="À côté du marché, maison bleue..."
-            className="w-full rounded-2xl border-2 border-gray-100 bg-surface px-4 py-3.5 text-[15px] text-ink outline-none focus:border-primary transition"
+            className="w-full rounded-2xl border-2 border-gray-100 bg-surface px-4 py-3.5 text-[15px] text-ink outline-none focus:border-primary focus-visible:ring-2 focus-visible:ring-primary/50 transition"
           />
         </div>
 
@@ -199,3 +199,4 @@ export default function Checkout({ onBack }) {
     </div>
   );
 }
+
