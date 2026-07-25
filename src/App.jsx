@@ -18,8 +18,7 @@ import HistoryScreen from "./components/HistoryScreen";
 function Shell() {
   const [splashDone, setSplashDone] = useState(false);
   const { loading: menuLoading } = useMenu();
-  const { items, subtotal } = useCart();
-  const itemCount = items.reduce((sum, item) => sum + item.qty, 0);
+  const { itemCount, subtotal } = useCart();
 
   const [tab, setTab] = useState("discover");
   const [modal, setModal] = useState(null); // 'restaurant' | 'detail' | 'order' | 'checkout' | 'history'
