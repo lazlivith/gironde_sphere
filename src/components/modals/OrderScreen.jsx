@@ -1,4 +1,4 @@
-/* OrderScreen.jsx — schéma actuel (menu.recommendations) */
+﻿/* OrderScreen.jsx â€” schÃ©ma actuel (menu.recommendations) */
 import { useCart } from "../../context/CartContext";
 import { useMenu } from "../../context/MenuContext";
 import { BackButton, FCFA } from "../ui/ui";
@@ -8,14 +8,14 @@ export default function OrderScreen({ onBack, onCheckout }) {
   const allItems = menu.categories.flatMap((c) => c.items);
   const { lines, addLine, updateQty, removeLine, subtotal } = useCart();
 
-  // Dérivation des suggestions "Upsell" (Ventes croisées)
+  // DÃ©rivation des suggestions "Upsell" (Ventes croisÃ©es)
   const cartNames = new Set(lines.map(l => l.name));
   const upsellCandidates = allItems.filter(item => {
-    // On sélectionne des articles peu coûteux (<= 2500 FCFA), avec un prix fixe, non présents dans le panier
+    // On sÃ©lectionne des articles peu coÃ»teux (<= 2500 FCFA), avec un prix fixe, non prÃ©sents dans le panier
     return item.price && item.price <= 2500 && !cartNames.has(item.name);
   });
 
-  // On en prend 3 aléatoirement
+  // On en prend 3 alÃ©atoirement
   const suggestions = [...upsellCandidates].sort(() => 0.5 - Math.random()).slice(0, 3);
 
   return (
@@ -30,11 +30,11 @@ export default function OrderScreen({ onBack, onCheckout }) {
       </div>
 
       <div className="px-5 pb-44 overflow-y-auto">
-        <h3 className="font-display text-[16px] font-bold text-ink mb-3">Articles commandés</h3>
+        <h3 className="font-display text-[16px] font-bold text-ink mb-3">Articles commandÃ©s</h3>
 
         {lines.length === 0 ? (
           <div className="flex flex-col items-center justify-center py-16 text-center">
-            <span className="text-5xl">🛒</span>
+            <span className="text-5xl">ðŸ›’</span>
             <p className="mt-4 text-[15px] font-semibold text-ink">Votre commande est vide</p>
             <p className="mt-1 text-[13px] text-muted">Ajoutez des plats depuis le menu</p>
             <button onClick={onBack} className="mt-6 rounded-full bg-primary px-6 py-3 text-[14px] font-bold text-white">
@@ -47,7 +47,7 @@ export default function OrderScreen({ onBack, onCheckout }) {
               {lines.map((line) => (
                 <div key={line.lineId} className="flex items-center gap-4">
                   <div className="flex-shrink-0 h-16 w-16 rounded-2xl bg-[#FFF5EE] flex items-center justify-center">
-                    <span className="text-3xl">🍽</span>
+                    <span className="text-3xl">ðŸ½</span>
                   </div>
                   <div className="flex-1 min-w-0">
                     <p className="text-[14px] font-semibold text-ink truncate">{line.name}</p>
@@ -70,7 +70,7 @@ export default function OrderScreen({ onBack, onCheckout }) {
                       <button
                         onClick={() => updateQty(line.lineId, line.qty - 1)}
                         className="flex h-7 w-7 items-center justify-center rounded-full bg-primary text-white text-sm font-bold transition-transform active:scale-90"
-                      >−</button>
+                      >âˆ’</button>
                     )}
                     <span className="w-5 text-center text-[13px] font-semibold text-ink">{line.qty}</span>
                     <button
@@ -89,18 +89,18 @@ export default function OrderScreen({ onBack, onCheckout }) {
           </>
         )}
 
-        {/* Upsell / Complétez votre repas */}
+        {/* Upsell / ComplÃ©tez votre repas */}
         {lines.length > 0 && suggestions.length > 0 && (
           <div className="mt-8 animate-fade-up">
-            <h3 className="font-display text-[16px] font-bold text-ink mb-3">Complétez votre repas ! 🍟🥤</h3>
+            <h3 className="font-display text-[16px] font-bold text-ink mb-3">ComplÃ©tez votre repas ! ðŸŸðŸ¥¤</h3>
             <div className="flex gap-3 overflow-x-auto no-scrollbar -mx-1 px-1">
               {suggestions.map((rec) => (
                 <div key={rec.id} className="flex-shrink-0 w-32 rounded-2xl overflow-hidden bg-white shadow-sm border border-gray-100 relative transition-transform active:scale-95">
                   <div className="h-24 bg-[#FFF5EE] flex items-center justify-center">
                     {rec.image ? (
-                      <img src={rec.image} alt={rec.name} className="h-full w-full object-cover" />
+                      <LazyImage src={rec.image} alt={rec.name} className="h-full w-full object-cover" />
                     ) : (
-                      <span className="text-4xl">{rec.emoji || "🍽"}</span>
+                      <span className="text-4xl">{rec.emoji || "ðŸ½"}</span>
                     )}
                   </div>
                   <button 
@@ -135,3 +135,4 @@ export default function OrderScreen({ onBack, onCheckout }) {
     </div>
   );
 }
+

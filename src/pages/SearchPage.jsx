@@ -1,11 +1,11 @@
 ﻿/* SearchPage.jsx â€” schÃ©ma actuel (popularSearchTags + categories > items) */
 import { useState } from "react";
 import { useMenu } from "../context/MenuContext";
-import { FCFA } from "../components/ui/ui";
+import { LazyImage,  FCFA  } from "../components/ui/ui";
 
 function ProductThumb({ item }) {
   return item.image ? (
-    <img src={item.image} alt={item.name} className="h-full w-full object-cover" loading="lazy" />
+    <LazyImage src={item.image} alt={item.name} className="h-full w-full object-cover" loading="lazy" />
   ) : (
     <span className="text-6xl">{item.emoji || "ðŸ½"}</span>
   );
@@ -117,4 +117,5 @@ export default function SearchPage({ onOpenItem }) {
     </div>
   );
 }
+
 

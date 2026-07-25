@@ -1,11 +1,11 @@
 ﻿/* CategoriesPage.jsx â€” schÃ©ma actuel (categories > items imbriquÃ©s) */
 import { useState } from "react";
 import { useMenu } from "../context/MenuContext";
-import { StatusBar, FCFA } from "../components/ui/ui";
+import { LazyImage,  StatusBar, FCFA  } from "../components/ui/ui";
 
 function ProductThumb({ item }) {
   return item.image ? (
-    <img src={item.image} alt={item.name} className="h-full w-full object-cover transition-transform duration-500 hover:scale-110" loading="lazy" />
+    <LazyImage src={item.image} alt={item.name} className="h-full w-full object-cover transition-transform duration-500 hover:scale-110" loading="lazy" />
   ) : (
     <span className="text-4xl transition-transform duration-500 hover:scale-110">{item.emoji || "ðŸ½"}</span>
   );
@@ -115,4 +115,5 @@ export default function CategoriesPage({ onOpenItem }) {
     </div>
   );
 }
+
 

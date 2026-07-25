@@ -2,13 +2,13 @@
 import { useState, useEffect } from "react";
 import { useCart } from "../context/CartContext";
 import { useMenu } from "../context/MenuContext";
-import { StatusBar, StarRating, FCFA } from "../components/ui/ui";
+import { LazyImage,  StatusBar, StarRating, FCFA  } from "../components/ui/ui";
 import { isStoreOpen } from "../utils/time";
 import { useInstallPrompt } from "../utils/useInstallPrompt";
 
 function ProductThumb({ item, className = "" }) {
   return item.image ? (
-    <img src={item.image} alt={item.name} className={`h-full w-full object-cover transition-transform duration-500 hover:scale-110 ${className}`} loading="lazy" />
+    <LazyImage src={item.image} alt={item.name} className={`h-full w-full object-cover transition-transform duration-500 hover:scale-110 ${className}`} loading="lazy" />
   ) : (
     <span className="text-5xl transition-transform duration-500 hover:scale-110">{item.emoji || "Ã°Å¸ÂÂ½"}</span>
   );
@@ -215,4 +215,5 @@ export default function Home({ onOpenItem, onOpenCart, onNavigate, onOpenHistory
     </main>
   );
 }
+
 

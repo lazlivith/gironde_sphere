@@ -1,14 +1,14 @@
 ﻿/* FavoritePage.jsx â€” schÃ©ma actuel (categories > items, menu.brand) */
 import { useState } from "react";
 import menu from "../data/menu.json";
-import { FCFA } from "../components/ui/ui";
+import { LazyImage,  FCFA  } from "../components/ui/ui";
 
 const allItems = menu.categories.flatMap((c) => c.items);
 const FAVORITE_ITEMS = allItems.slice(0, 3);
 
 function ProductThumb({ item }) {
   return item.image ? (
-    <img src={item.image} alt={item.name} className="h-full w-full object-cover" loading="lazy" />
+    <LazyImage src={item.image} alt={item.name} className="h-full w-full object-cover" loading="lazy" />
   ) : (
     <span className="text-7xl">{item.emoji || "ðŸ½"}</span>
   );
@@ -112,4 +112,5 @@ export default function FavoritePage({ onOpenItem }) {
     </div>
   );
 }
+
 

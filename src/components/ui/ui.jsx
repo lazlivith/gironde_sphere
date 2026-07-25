@@ -1,8 +1,31 @@
-﻿/* =====================================================
+import { useState } from "react";
+/* =====================================================
    ui.jsx â€” Shared UI primitives (Figma-faithful)
    ===================================================== */
 
 // â”€â”€ Back Button (rounded grey circle with arrow) â”€â”€
+
+// ── Lazy Image (Web Vitals / Fallback) ──
+export function LazyImage({ src, alt, className, fallbackEmoji = "🍽️" }) {
+  const [error, setError] = useState(false);
+  if (!src || error) {
+    return (
+      <span className={`flex items-center justify-center bg-[#FFF5EE] text-4xl ${className}`}>
+        {fallbackEmoji}
+      </span>
+    );
+  }
+  return (
+    <img
+      src={src}
+      alt={alt}
+      className={className}
+      loading="lazy"
+      onError={() => setError(true)}
+    />
+  );
+}
+
 export function BackButton({ onClick }) {
   return (
     <button
@@ -125,5 +148,6 @@ export function StarRating({ value }) {
 
 // â”€â”€ Price display â”€â”€
 export const FCFA = (n) => `${n.toLocaleString("fr-FR")} FCFA`;
+
 
 

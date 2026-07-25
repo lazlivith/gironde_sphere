@@ -1,11 +1,11 @@
 ﻿/* PromoPage.jsx â€” Section Promotions, Formules, VidÃ©os */
 import { useState } from "react";
 import { useMenu } from "../context/MenuContext";
-import { StatusBar, FCFA } from "../components/ui/ui";
+import { LazyImage,  StatusBar, FCFA  } from "../components/ui/ui";
 
 function ProductThumb({ item }) {
   return item.image ? (
-    <img src={item.image} alt={item.name} className="h-full w-full object-cover" loading="lazy" />
+    <LazyImage src={item.image} alt={item.name} className="h-full w-full object-cover" loading="lazy" />
   ) : (
     <span className="text-4xl">{item.emoji || "ðŸ½"}</span>
   );
@@ -146,4 +146,5 @@ export default function PromoPage({ onOpenItem }) {
     </div>
   );
 }
+
 
