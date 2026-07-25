@@ -1,4 +1,4 @@
-﻿/* Home.jsx Ã¢â‚¬â€ Discovery Page Ã¢â‚¬â€ schÃƒÂ©ma menu actuel (categories > items imbriquÃƒÂ©s) */
+﻿/* Home.jsx à¢â‚¬â€ Discovery Page à¢â‚¬â€ schàƒ©ma menu actuel (categories > items imbriquàƒ©s) */
 import { useState, useEffect } from "react";
 import { useCart } from "../context/CartContext";
 import { useMenu } from "../context/MenuContext";
@@ -10,7 +10,7 @@ function ProductThumb({ item, className = "" }) {
   return item.image ? (
     <LazyImage src={item.image} alt={item.name} className={`h-full w-full object-cover transition-transform duration-500 hover:scale-110 ${className}`} loading="lazy" />
   ) : (
-    <span className="text-5xl transition-transform duration-500 hover:scale-110">{item.emoji || "Ã°Å¸ÂÂ½"}</span>
+    <span className="text-5xl transition-transform duration-500 hover:scale-110">{item.emoji || "à°Å¸½"}</span>
   );
 }
 
@@ -67,14 +67,14 @@ export default function Home({ onOpenItem, onOpenCart, onNavigate, onOpenHistory
         </button>
       </header>
 
-      {/* BanniÃƒÂ¨re Cuisines FermÃƒÂ©es */}
+      {/* Banniàƒ¨re Cuisines Fermàƒ©es */}
       {!isOpen && (
         <section className="mx-4 mb-4 rounded-2xl bg-red-50 p-4 border border-red-100 flex items-start gap-3 animate-fade-up">
-          <span className="text-xl">Ã°Å¸ËœÂ´</span>
+          <span className="text-xl">à°Å¸Ëœ´</span>
           <div>
-            <h3 className="text-[14px] font-bold text-red-800">Cuisines fermÃƒÂ©es</h3>
+            <h3 className="text-[14px] font-bold text-red-800">Cuisines fermàƒ©es</h3>
             <p className="text-[12px] text-red-600 mt-0.5 leading-tight">
-              Nous sommes ouverts tous les jours de 10h ÃƒÂ  22h30. Ãƒâ‚¬ trÃƒÂ¨s vite !
+              Nous sommes ouverts tous les jours de 10h àƒ  22h30. àƒâ‚¬ tràƒ¨s vite !
             </p>
           </div>
         </section>
@@ -119,7 +119,7 @@ export default function Home({ onOpenItem, onOpenCart, onNavigate, onOpenHistory
             <img src="/assets/Logo.png" alt="Logo GirondeSphere" className="w-12 h-12 rounded-2xl shadow-sm border border-gray-50" />
             <div>
               <h3 className="font-display text-[15px] font-bold text-ink leading-tight">Installer l'app</h3>
-              <p className="text-[12px] text-muted mt-1 leading-tight">AccÃƒÂ¨s direct depuis l'ÃƒÂ©cran d'accueil</p>
+              <p className="text-[12px] text-muted mt-1 leading-tight">Accàƒ¨s direct depuis l'àƒ©cran d'accueil</p>
             </div>
           </div>
           <button 
@@ -134,14 +134,14 @@ export default function Home({ onOpenItem, onOpenCart, onNavigate, onOpenHistory
       {/* Plats populaires */}
       <section aria-labelledby="pop-heading" className="mt-6 px-5 pb-2 animate-fade-up" style={{ animationDelay: '100ms' }}>
         <div className="flex items-center justify-between mb-3">
-          <h2 className="font-display text-[17px] font-bold text-ink">Plats populaires Ã°Å¸â€˜â€¹</h2>
+          <h2 className="font-display text-[17px] font-bold text-ink">Plats populaires à°Å¸â€˜â€¹</h2>
           <button onClick={() => onNavigate("categories")} className="rounded-full bg-primary/10 px-3 py-1 text-[12px] font-semibold text-primary">
             Voir tout
           </button>
         </div>
         <div className="flex gap-3 overflow-x-auto no-scrollbar -mx-1 px-1 pb-2">
           {popularItems.map((item) => (
-            <button key={`pop-${item.id}`} aria-label={`Voir les dÃ©tails de ${item.name}`}
+            <button key={`pop-${item.id}`} aria-label={`Voir les détails de ${item.name}`}
               onClick={() => onOpenItem(item)}
               className="flex-shrink-0 w-40 rounded-2xl bg-white shadow-sm border border-gray-100 overflow-hidden text-left transition-all active:scale-95 hover:shadow-md"
             >
@@ -180,7 +180,7 @@ export default function Home({ onOpenItem, onOpenCart, onNavigate, onOpenHistory
             {category.items.map((item) => {
               const displayPrice = item.price ?? item.sizes?.[0]?.price ?? 0;
               return (
-                <button key={`cat-${item.id}`} aria-label={`Voir les dÃ©tails de ${item.name}`}
+                <button key={`cat-${item.id}`} aria-label={`Voir les détails de ${item.name}`}
                   onClick={() => onOpenItem(item)}
                   className="flex-shrink-0 w-36 rounded-2xl bg-white shadow-sm border border-gray-100 overflow-hidden text-left transition-all active:scale-95 hover:shadow-md"
                 >

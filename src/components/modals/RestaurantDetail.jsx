@@ -1,7 +1,7 @@
-/* RestaurantDetail.jsx — schéma actuel (menu.brand, categories > items) */
+﻿/* RestaurantDetail.jsx — schéma actuel (menu.brand, categories > items) */
 import { useState } from "react";
 import { useMenu } from "../../context/MenuContext";
-import { BackButton, HeartButton, StarRating, FCFA } from "../ui/ui";
+import { LazyImage,  BackButton, HeartButton, StarRating, FCFA  } from "../ui/ui";
 
 export default function RestaurantDetail({ restaurant, onBack, onOpenItem }) {
   const { menu } = useMenu();
@@ -12,7 +12,7 @@ export default function RestaurantDetail({ restaurant, onBack, onOpenItem }) {
     <div className="min-h-screen bg-white">
       {/* Cover photo */}
       <div className="relative h-64 bg-[#FFF5EE] flex items-center justify-center overflow-hidden">
-        <span className="text-[120px] opacity-80">🏠</span>
+        <span className="text-[120px] opacity-80">ðŸ </span>
         <div className="absolute top-12 left-4 right-4 flex items-center justify-between">
           <BackButton onClick={onBack} />
           <HeartButton active={isFav} onClick={() => setIsFav((v) => !v)} />
@@ -30,7 +30,7 @@ export default function RestaurantDetail({ restaurant, onBack, onOpenItem }) {
         <div className="mt-3 flex flex-wrap items-center gap-2">
           <StarRating value={menu.rating} />
           <span className="text-muted text-[12px]">Excellent</span>
-          <span className="text-muted mx-1">•</span>
+          <span className="text-muted mx-1">â€¢</span>
           <div className="flex items-center gap-1 rounded-full bg-primary/10 px-2.5 py-1">
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#FF6B2C" strokeWidth="2" strokeLinecap="round">
               <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
@@ -56,7 +56,7 @@ export default function RestaurantDetail({ restaurant, onBack, onOpenItem }) {
 
       {/* Products */}
       <div className="px-5 pt-4 pb-24">
-        <h2 className="font-display text-[17px] font-bold text-ink mb-3">Plats populaires 🔥</h2>
+        <h2 className="font-display text-[17px] font-bold text-ink mb-3">Plats populaires ðŸ”¥</h2>
         <div className="space-y-4">
           {allItems.map((item, index) => {
             const displayPrice = item.price ?? item.sizes?.[0]?.price ?? 0;
@@ -74,9 +74,9 @@ export default function RestaurantDetail({ restaurant, onBack, onOpenItem }) {
                 </div>
                 <div className="flex-shrink-0 h-16 w-16 rounded-2xl bg-[#FFF5EE] overflow-hidden flex items-center justify-center">
                   {item.image ? (
-                    <img src={item.image} alt={item.name} className="h-full w-full object-cover" loading="lazy" />
+                    <LazyImage src={item.image} alt={item.name} className="h-full w-full object-cover" loading="lazy" />
                   ) : (
-                    <span className="text-3xl">{item.emoji || "🍽"}</span>
+                    <span className="text-3xl">{item.emoji || "ðŸ½"}</span>
                   )}
                 </div>
               </button>
@@ -87,3 +87,4 @@ export default function RestaurantDetail({ restaurant, onBack, onOpenItem }) {
     </div>
   );
 }
+

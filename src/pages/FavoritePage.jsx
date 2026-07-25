@@ -1,4 +1,4 @@
-﻿/* FavoritePage.jsx â€” schÃ©ma actuel (categories > items, menu.brand) */
+﻿/* FavoritePage.jsx — schéma actuel (categories > items, menu.brand) */
 import { useState } from "react";
 import menu from "../data/menu.json";
 import { LazyImage,  FCFA  } from "../components/ui/ui";
@@ -19,7 +19,7 @@ export default function FavoritePage({ onOpenItem }) {
 
   return (
     <div className="pb-24 overflow-y-auto min-h-screen bg-white">
-      {/* Search bar (dÃ©corative) */}
+      {/* Search bar (décorative) */}
       <div className="px-5 pt-12 pb-4 bg-white sticky top-0 z-10">
         <div className="flex items-center gap-3 rounded-2xl bg-surface px-4 py-3">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#9E9E9E" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">

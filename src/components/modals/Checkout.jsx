@@ -1,4 +1,4 @@
-/* Checkout.jsx — schéma actuel (menu.deliveryZones avec id/label) */
+﻿/* Checkout.jsx â€” schÃ©ma actuel (menu.deliveryZones avec id/label) */
 import { useState } from "react";
 import { useCart } from "../../context/CartContext";
 import { useMenu } from "../../context/MenuContext";
@@ -34,7 +34,7 @@ export default function Checkout({ onBack }) {
   const handleSubmit = (e) => {
     if (e) e.preventDefault();
     if (!canSubmit) {
-      setError("Merci de renseigner votre nom et votre numéro de téléphone.");
+      setError("Merci de renseigner votre nom et votre numÃ©ro de tÃ©lÃ©phone.");
       return;
     }
     setError("");
@@ -67,10 +67,10 @@ export default function Checkout({ onBack }) {
       whatsappNumber: menu.whatsappNumber,
     };
 
-    // Mémorisation des informations du client pour la prochaine commande
+    // MÃ©morisation des informations du client pour la prochaine commande
     localStorage.setItem("songolo_customer", JSON.stringify(customer));
 
-    // Mémorisation dans l'historique des commandes
+    // MÃ©morisation dans l'historique des commandes
     const orderRecord = {
       id: crypto.randomUUID(),
       date: new Date().toISOString(),
@@ -112,9 +112,9 @@ export default function Checkout({ onBack }) {
           />
         </div>
 
-        {/* Téléphone */}
+        {/* TÃ©lÃ©phone */}
         <div>
-          <label className="mb-1.5 block text-[12px] font-bold uppercase tracking-wide text-muted">Téléphone</label>
+          <label className="mb-1.5 block text-[12px] font-bold uppercase tracking-wide text-muted">TÃ©lÃ©phone</label>
           <input
             value={customer.phone}
             onChange={(e) => setCustomer((p) => ({ ...p, phone: e.target.value }))}
@@ -123,15 +123,15 @@ export default function Checkout({ onBack }) {
           />
         </div>
 
-        {/* Adresse précise */}
+        {/* Adresse prÃ©cise */}
         <div>
           <label className="mb-1.5 block text-[12px] font-bold uppercase tracking-wide text-muted">
-            Adresse précise <span className="normal-case font-normal text-muted">(optionnel)</span>
+            Adresse prÃ©cise <span className="normal-case font-normal text-muted">(optionnel)</span>
           </label>
           <input
             value={customer.address}
             onChange={(e) => setCustomer((p) => ({ ...p, address: e.target.value }))}
-            placeholder="À côté du marché, maison bleue..."
+            placeholder="Ã€ cÃ´tÃ© du marchÃ©, maison bleue..."
             className="w-full rounded-2xl border-2 border-gray-100 bg-surface px-4 py-3.5 text-[15px] text-ink outline-none focus:border-primary focus-visible:ring-2 focus-visible:ring-primary/50 transition"
           />
         </div>
@@ -162,7 +162,7 @@ export default function Checkout({ onBack }) {
           <p className="rounded-xl bg-red-50 px-4 py-3 text-[13px] font-medium text-red-500">{error}</p>
         )}
 
-        {/* Récap */}
+        {/* RÃ©cap */}
         <div className="rounded-2xl bg-surface p-4 space-y-2">
           <div className="flex justify-between text-[14px] text-muted">
             <span>Sous-total</span><span>{FCFA(subtotal)}</span>
@@ -178,7 +178,7 @@ export default function Checkout({ onBack }) {
       </div>
 
       {/* CTA */}
-      <div className="flex-shrink-0 w-full bg-white px-5 py-4 shadow-[0_-10px_30px_rgba(0,0,0,0.06)] border-t border-gray-100 z-40">
+      <div className="flex-shrink-0 w-full bg-white px-5 pt-4 pb-safe shadow-[0_-10px_30px_rgba(0,0,0,0.06)] border-t border-gray-100 z-40">
         <button
           onClick={handleSubmit}
           disabled={!canSubmit}
@@ -189,14 +189,15 @@ export default function Checkout({ onBack }) {
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
               </svg>
-              Confirmer via WhatsApp — {FCFA(total)}
+              Confirmer via WhatsApp â€” {FCFA(total)}
             </>
           ) : (
-             "Cuisines fermées (10h - 22h30)"
+             "Cuisines fermÃ©es (10h - 22h30)"
           )}
         </button>
       </div>
     </div>
   );
 }
+
 

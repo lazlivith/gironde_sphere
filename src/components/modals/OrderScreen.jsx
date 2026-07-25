@@ -1,4 +1,4 @@
-﻿/* OrderScreen.jsx â€” schÃ©ma actuel (menu.recommendations) */
+﻿/* OrderScreen.jsx — schéma actuel (menu.recommendations) */
 import { useCart } from "../../context/CartContext";
 import { useMenu } from "../../context/MenuContext";
 import { BackButton, FCFA } from "../ui/ui";
@@ -8,14 +8,14 @@ export default function OrderScreen({ onBack, onCheckout }) {
   const allItems = menu.categories.flatMap((c) => c.items);
   const { lines, addLine, updateQty, removeLine, subtotal } = useCart();
 
-  // DÃ©rivation des suggestions "Upsell" (Ventes croisÃ©es)
+  // Dérivation des suggestions "Upsell" (Ventes croisées)
   const cartNames = new Set(lines.map(l => l.name));
   const upsellCandidates = allItems.filter(item => {
-    // On sÃ©lectionne des articles peu coÃ»teux (<= 2500 FCFA), avec un prix fixe, non prÃ©sents dans le panier
+    // On sélectionne des articles peu coà»teux (<= 2500 FCFA), avec un prix fixe, non présents dans le panier
     return item.price && item.price <= 2500 && !cartNames.has(item.name);
   });
 
-  // On en prend 3 alÃ©atoirement
+  // On en prend 3 aléatoirement
   const suggestions = [...upsellCandidates].sort(() => 0.5 - Math.random()).slice(0, 3);
 
   return (
@@ -30,7 +30,7 @@ export default function OrderScreen({ onBack, onCheckout }) {
       </div>
 
       <div className="px-5 pb-44 overflow-y-auto">
-        <h3 className="font-display text-[16px] font-bold text-ink mb-3">Articles commandÃ©s</h3>
+        <h3 className="font-display text-[16px] font-bold text-ink mb-3">Articles commandés</h3>
 
         {lines.length === 0 ? (
           <div className="flex flex-col items-center justify-center py-16 text-center">
@@ -89,10 +89,10 @@ export default function OrderScreen({ onBack, onCheckout }) {
           </>
         )}
 
-        {/* Upsell / ComplÃ©tez votre repas */}
+        {/* Upsell / Complétez votre repas */}
         {lines.length > 0 && suggestions.length > 0 && (
           <div className="mt-8 animate-fade-up">
-            <h3 className="font-display text-[16px] font-bold text-ink mb-3">ComplÃ©tez votre repas ! ðŸŸðŸ¥¤</h3>
+            <h3 className="font-display text-[16px] font-bold text-ink mb-3">Complétez votre repas ! ðŸŸðŸ¥¤</h3>
             <div className="flex gap-3 overflow-x-auto no-scrollbar -mx-1 px-1">
               {suggestions.map((rec) => (
                 <div key={rec.id} className="flex-shrink-0 w-32 rounded-2xl overflow-hidden bg-white shadow-sm border border-gray-100 relative transition-transform active:scale-95">
@@ -122,7 +122,7 @@ export default function OrderScreen({ onBack, onCheckout }) {
       </div>
 
       {lines.length > 0 && (
-        <div className="flex-shrink-0 w-full bg-white px-5 py-4 shadow-[0_-10px_30px_rgba(0,0,0,0.06)] border-t border-gray-100 z-40">
+        <div className="flex-shrink-0 w-full bg-white px-5 pt-4 pb-safe shadow-[0_-10px_30px_rgba(0,0,0,0.06)] border-t border-gray-100 z-40">
           <button
             onClick={onCheckout}
             className="flex w-full items-center justify-between rounded-full bg-primary px-6 py-4 text-[15px] font-bold text-white shadow-lg shadow-primary/30"
@@ -135,4 +135,5 @@ export default function OrderScreen({ onBack, onCheckout }) {
     </div>
   );
 }
+
 

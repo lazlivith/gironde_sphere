@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap');
+﻿@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -30,6 +30,7 @@ body {
 .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 
 /* Safe area */
-.pb-safe { padding-bottom: env(safe-area-inset-bottom, 0px); }
-.pt-safe { padding-top: env(safe-area-inset-top, 0px); }
+.pb-safe { padding-bottom: max(16px, env(safe-area-inset-bottom, 16px)); }
+.pt-safe { padding-top: max(16px, env(safe-area-inset-top, 16px)); }
+
 

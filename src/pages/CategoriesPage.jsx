@@ -1,4 +1,4 @@
-﻿/* CategoriesPage.jsx â€” schÃ©ma actuel (categories > items imbriquÃ©s) */
+﻿/* CategoriesPage.jsx — schéma actuel (categories > items imbriqués) */
 import { useState } from "react";
 import { useMenu } from "../context/MenuContext";
 import { LazyImage,  StatusBar, FCFA  } from "../components/ui/ui";
@@ -29,7 +29,7 @@ export default function CategoriesPage({ onOpenItem }) {
       <StatusBar />
 
       <div className="px-5 pt-2 pb-4">
-        <h1 className="font-display text-[28px] font-bold text-ink">CatÃ©gories</h1>
+        <h1 className="font-display text-[28px] font-bold text-ink">Catégories</h1>
       </div>
 
       {/* Category cards */}
@@ -68,7 +68,7 @@ export default function CategoriesPage({ onOpenItem }) {
       {/* Section label */}
       <div className="px-5 mb-3 flex items-center justify-between">
         <h2 className="font-display text-[16px] font-bold text-ink">{activeLabel}</h2>
-        <span className="text-[13px] text-muted">{shownItems.length} rÃ©sultat{shownItems.length > 1 ? "s" : ""}</span>
+        <span className="text-[13px] text-muted">{shownItems.length} résultat{shownItems.length > 1 ? "s" : ""}</span>
       </div>
 
       {/* Items list */}

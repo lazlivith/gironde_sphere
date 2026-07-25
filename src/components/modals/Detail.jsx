@@ -1,7 +1,7 @@
-/* Detail.jsx — Food Details (Glovo Style) */
+﻿/* Detail.jsx — Food Details (Glovo Style) */
 import { useState, useEffect } from "react";
 import { useCart } from "../../context/CartContext";
-import { BackButton, CloseButton, HeartButton, Stepper, FCFA } from "../ui/ui";
+import { LazyImage,  BackButton, CloseButton, HeartButton, Stepper, FCFA  } from "../ui/ui";
 
 export default function Detail({ item, onBack, onAdded }) {
   const { addLine } = useCart();
@@ -120,9 +120,9 @@ export default function Detail({ item, onBack, onAdded }) {
           <HeartButton active={isFav} onClick={() => setIsFav((v) => !v)} />
         </div>
         {item.image ? (
-          <img src={item.image} alt={item.name} className="h-full w-full object-cover" />
+          <LazyImage src={item.image} alt={item.name} className="h-full w-full object-cover" />
         ) : (
-          <div className="flex h-full w-full items-center justify-center bg-[#FFF5EE] text-8xl">{item.emoji || "🍽"}</div>
+          <div className="flex h-full w-full items-center justify-center bg-[#FFF5EE] text-8xl">{item.emoji || "ðŸ½"}</div>
         )}
       </div>
 
@@ -174,7 +174,7 @@ export default function Detail({ item, onBack, onAdded }) {
                 <div className="flex items-center justify-between mb-3">
                   <div>
                     <h3 className="font-display text-[16px] font-bold text-ink">{group.title}</h3>
-                    {group.max && <p className="text-[11px] text-muted mt-0.5">Choisis jusqu'à {group.max} options</p>}
+                    {group.max && <p className="text-[11px] text-muted mt-0.5">Choisis jusqu'à  {group.max} options</p>}
                   </div>
                   {group.max && <span className="text-[11px] font-bold text-primary bg-primary/10 px-2 py-1 rounded">{selectedCount}/{group.max}</span>}
                 </div>
@@ -209,7 +209,7 @@ export default function Detail({ item, onBack, onAdded }) {
       </div>
       
       {/* Sticky Bottom Bar */}
-      <div className="flex-shrink-0 w-full flex items-center gap-3 bg-white px-5 py-4 shadow-[0_-10px_30px_rgba(0,0,0,0.06)] border-t border-gray-100 z-40">
+      <div className="flex-shrink-0 w-full flex items-center gap-3 bg-white px-5 pt-4 pb-safe shadow-[0_-10px_30px_rgba(0,0,0,0.06)] border-t border-gray-100 z-40">
         <Stepper qty={qty} onChange={(v) => setQty(Math.max(1, v))} />
         <button
           onClick={handleAdd}
@@ -223,4 +223,6 @@ export default function Detail({ item, onBack, onAdded }) {
     </div>
   );
 }
+
+
 

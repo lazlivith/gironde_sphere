@@ -1,4 +1,4 @@
-﻿/* SearchPage.jsx â€” schÃ©ma actuel (popularSearchTags + categories > items) */
+﻿/* SearchPage.jsx — schéma actuel (popularSearchTags + categories > items) */
 import { useState } from "react";
 import { useMenu } from "../context/MenuContext";
 import { LazyImage,  FCFA  } from "../components/ui/ui";
@@ -79,8 +79,8 @@ export default function SearchPage({ onOpenItem }) {
       ) : results.length === 0 ? (
         <div className="flex flex-col items-center justify-center pt-20 px-8 text-center">
           <span className="text-5xl">ðŸ”</span>
-          <p className="mt-4 text-[15px] font-semibold text-ink">Aucun rÃ©sultat</p>
-          <p className="mt-1 text-[13px] text-muted">Essayez un autre mot-clÃ©</p>
+          <p className="mt-4 text-[15px] font-semibold text-ink">Aucun résultat</p>
+          <p className="mt-1 text-[13px] text-muted">Essayez un autre mot-clé</p>
         </div>
       ) : (
         <div className="px-5 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 pt-2">

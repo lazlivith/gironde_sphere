@@ -1,6 +1,6 @@
 import { useState } from "react";
 /* =====================================================
-   ui.jsx â€” Shared UI primitives (Figma-faithful)
+   ui.jsx — Shared UI primitives (Figma-faithful)
    ===================================================== */
 
 // â”€â”€ Back Button (rounded grey circle with arrow) â”€â”€
