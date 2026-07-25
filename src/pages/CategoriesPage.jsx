@@ -1,4 +1,4 @@
-/* CategoriesPage.jsx — schéma actuel (categories > items imbriqués) */
+﻿/* CategoriesPage.jsx â€” schÃ©ma actuel (categories > items imbriquÃ©s) */
 import { useState } from "react";
 import { useMenu } from "../context/MenuContext";
 import { StatusBar, FCFA } from "../components/ui/ui";
@@ -7,7 +7,7 @@ function ProductThumb({ item }) {
   return item.image ? (
     <img src={item.image} alt={item.name} className="h-full w-full object-cover transition-transform duration-500 hover:scale-110" loading="lazy" />
   ) : (
-    <span className="text-4xl transition-transform duration-500 hover:scale-110">{item.emoji || "🍽"}</span>
+    <span className="text-4xl transition-transform duration-500 hover:scale-110">{item.emoji || "ðŸ½"}</span>
   );
 }
 
@@ -29,7 +29,7 @@ export default function CategoriesPage({ onOpenItem }) {
       <StatusBar />
 
       <div className="px-5 pt-2 pb-4">
-        <h1 className="font-display text-[28px] font-bold text-ink">Catégories</h1>
+        <h1 className="font-display text-[28px] font-bold text-ink">CatÃ©gories</h1>
       </div>
 
       {/* Category cards */}
@@ -42,7 +42,7 @@ export default function CategoriesPage({ onOpenItem }) {
               activeCat === null ? "bg-primary border-primary text-white" : "bg-white border-gray-200 text-ink"
             }`}
           >
-            <span className="text-3xl">🍽</span>
+            <span className="text-3xl">ðŸ½</span>
             <span className={`text-[12px] font-semibold ${activeCat === null ? "text-white" : "text-ink"}`}>Tout</span>
             <span className={`text-[11px] ${activeCat === null ? "text-white/80" : "text-muted"}`}>{allItems.length} plats</span>
           </button>
@@ -68,7 +68,7 @@ export default function CategoriesPage({ onOpenItem }) {
       {/* Section label */}
       <div className="px-5 mb-3 flex items-center justify-between">
         <h2 className="font-display text-[16px] font-bold text-ink">{activeLabel}</h2>
-        <span className="text-[13px] text-muted">{shownItems.length} résultat{shownItems.length > 1 ? "s" : ""}</span>
+        <span className="text-[13px] text-muted">{shownItems.length} rÃ©sultat{shownItems.length > 1 ? "s" : ""}</span>
       </div>
 
       {/* Items list */}
@@ -115,3 +115,4 @@ export default function CategoriesPage({ onOpenItem }) {
     </div>
   );
 }
+

@@ -1,4 +1,4 @@
-/* PromoPage.jsx — Section Promotions, Formules, Vidéos */
+﻿/* PromoPage.jsx â€” Section Promotions, Formules, VidÃ©os */
 import { useState } from "react";
 import { useMenu } from "../context/MenuContext";
 import { StatusBar, FCFA } from "../components/ui/ui";
@@ -7,7 +7,7 @@ function ProductThumb({ item }) {
   return item.image ? (
     <img src={item.image} alt={item.name} className="h-full w-full object-cover" loading="lazy" />
   ) : (
-    <span className="text-4xl">{item.emoji || "🍽"}</span>
+    <span className="text-4xl">{item.emoji || "ðŸ½"}</span>
   );
 }
 
@@ -19,7 +19,7 @@ export default function PromoPage({ onOpenItem }) {
   const defaultTab = promoTabs.length > 0 ? promoTabs[0].id : "";
   const [activeTab, setActiveTab] = useState(defaultTab);
 
-  // Vraies promotions : articles avec un originalPrice défini et supérieur au price
+  // Vraies promotions : articles avec un originalPrice dÃ©fini et supÃ©rieur au price
   const realPromoItems = allItems.filter(item => item.originalPrice && item.originalPrice > item.price);
 
   return (
@@ -48,10 +48,10 @@ export default function PromoPage({ onOpenItem }) {
           
           <div className="absolute bottom-5 left-5 right-5 pointer-events-none">
             <span className="inline-block rounded-full bg-red-500 px-3 py-1 text-[11px] font-bold text-white mb-2 shadow-lg shadow-red-500/30 uppercase tracking-wider">
-              À La Une
+              Ã€ La Une
             </span>
-            <h2 className="font-display text-[22px] font-bold text-white leading-tight drop-shadow-md">Nouveautés Songolo</h2>
-            <p className="text-[13px] text-white/90 mt-1 font-medium drop-shadow-md">Découvrez nos formules explosives</p>
+            <h2 className="font-display text-[22px] font-bold text-white leading-tight drop-shadow-md">NouveautÃ©s Songolo</h2>
+            <p className="text-[13px] text-white/90 mt-1 font-medium drop-shadow-md">DÃ©couvrez nos formules explosives</p>
           </div>
         </div>
       </div>
@@ -146,3 +146,4 @@ export default function PromoPage({ onOpenItem }) {
     </div>
   );
 }
+

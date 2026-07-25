@@ -1,13 +1,13 @@
-/* =====================================================
-   ui.jsx — Shared UI primitives (Figma-faithful)
+﻿/* =====================================================
+   ui.jsx â€” Shared UI primitives (Figma-faithful)
    ===================================================== */
 
-// ── Back Button (rounded grey circle with arrow) ──
+// â”€â”€ Back Button (rounded grey circle with arrow) â”€â”€
 export function BackButton({ onClick }) {
   return (
     <button
       onClick={onClick}
-      className="flex h-9 w-9 items-center justify-center rounded-full bg-[#F5F5F5] text-ink transition-transform active:scale-90 focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none hover:bg-gray-200 focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none"
+      className="flex h-11 w-11 items-center justify-center rounded-full bg-[#F5F5F5] text-ink transition-transform active:scale-90 focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none hover:bg-gray-200 focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none"
       aria-label="Retour"
     >
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
@@ -17,12 +17,12 @@ export function BackButton({ onClick }) {
   );
 }
 
-// ── Close Button (X) ──
+// â”€â”€ Close Button (X) â”€â”€
 export function CloseButton({ onClick }) {
   return (
     <button
       onClick={onClick}
-      className="flex h-9 w-9 items-center justify-center rounded-full bg-[#F5F5F5] text-ink transition-transform active:scale-90 focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none hover:bg-gray-200 focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none"
+      className="flex h-11 w-11 items-center justify-center rounded-full bg-[#F5F5F5] text-ink transition-transform active:scale-90 focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none hover:bg-gray-200 focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none"
       aria-label="Fermer"
     >
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
@@ -32,7 +32,7 @@ export function CloseButton({ onClick }) {
   );
 }
 
-// ── Status Bar (simulated) ──
+// â”€â”€ Status Bar (simulated) â”€â”€
 export function StatusBar() {
   return (
     <div className="flex items-center justify-between px-5 pt-3 pb-1">
@@ -61,7 +61,7 @@ export function StatusBar() {
   );
 }
 
-// ── Top Bar (standard page header) ──
+// â”€â”€ Top Bar (standard page header) â”€â”€
 export function TopBar({ title, onBack, right }) {
   return (
     <div className="flex items-center justify-between px-5 py-3">
@@ -72,9 +72,9 @@ export function TopBar({ title, onBack, right }) {
   );
 }
 
-// ── Stepper (quantity control like Figma orange buttons) ──
+// â”€â”€ Stepper (quantity control like Figma orange buttons) â”€â”€
 export function Stepper({ qty, onChange, size = "md" }) {
-  const dims = size === "sm" ? "h-7 w-7 text-sm" : "h-9 w-9 text-base";
+  const dims = size === "sm" ? "h-9 w-9 text-sm" : "h-11 w-11 text-base";
   return (
     <div className="flex items-center gap-3">
       <button
@@ -96,12 +96,12 @@ export function Stepper({ qty, onChange, size = "md" }) {
   );
 }
 
-// ── Heart / Favorite icon button ──
+// â”€â”€ Heart / Favorite icon button â”€â”€
 export function HeartButton({ active = false, onClick, className = "" }) {
   return (
     <button
       onClick={onClick}
-      className={`flex h-9 w-9 items-center justify-center rounded-full ${active ? 'bg-red-50' : 'bg-white'} shadow-sm transition-all duration-300 active:scale-75 focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none ${active ? 'animate-pop' : ''} ${className}`}
+      className={`flex h-11 w-11 items-center justify-center rounded-full ${active ? 'bg-red-50' : 'bg-white'} shadow-sm transition-all duration-300 active:scale-75 focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none ${active ? 'animate-pop' : ''} ${className}`}
       aria-label={active ? "Retirer des favoris" : "Ajouter aux favoris"}
     >
       <svg width="18" height="18" viewBox="0 0 24 24" fill={active ? "#FF3B30" : "none"} stroke={active ? "#FF3B30" : "#9E9E9E"} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -111,7 +111,7 @@ export function HeartButton({ active = false, onClick, className = "" }) {
   );
 }
 
-// ── Star rating ──
+// â”€â”€ Star rating â”€â”€
 export function StarRating({ value }) {
   return (
     <div className="flex items-center gap-1">
@@ -123,6 +123,7 @@ export function StarRating({ value }) {
   );
 }
 
-// ── Price display ──
+// â”€â”€ Price display â”€â”€
 export const FCFA = (n) => `${n.toLocaleString("fr-FR")} FCFA`;
+
 

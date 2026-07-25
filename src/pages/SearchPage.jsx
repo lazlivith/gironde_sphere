@@ -1,4 +1,4 @@
-/* SearchPage.jsx — schéma actuel (popularSearchTags + categories > items) */
+﻿/* SearchPage.jsx â€” schÃ©ma actuel (popularSearchTags + categories > items) */
 import { useState } from "react";
 import { useMenu } from "../context/MenuContext";
 import { FCFA } from "../components/ui/ui";
@@ -7,7 +7,7 @@ function ProductThumb({ item }) {
   return item.image ? (
     <img src={item.image} alt={item.name} className="h-full w-full object-cover" loading="lazy" />
   ) : (
-    <span className="text-6xl">{item.emoji || "🍽"}</span>
+    <span className="text-6xl">{item.emoji || "ðŸ½"}</span>
   );
 }
 
@@ -39,7 +39,7 @@ export default function SearchPage({ onOpenItem }) {
   return (
     <div className="pb-24 overflow-y-auto min-h-screen bg-white">
       {/* Search bar */}
-      <div className="px-5 pt-12 pb-4 bg-white sticky top-0 z-10">
+      <div className="px-5 pt-safe pb-4 mt-12 bg-white sticky top-0 z-10">
         <div className="flex items-center gap-3 rounded-2xl bg-surface px-4 py-3">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#9E9E9E" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
             <circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/>
@@ -78,12 +78,12 @@ export default function SearchPage({ onOpenItem }) {
         </div>
       ) : results.length === 0 ? (
         <div className="flex flex-col items-center justify-center pt-20 px-8 text-center">
-          <span className="text-5xl">🔍</span>
-          <p className="mt-4 text-[15px] font-semibold text-ink">Aucun résultat</p>
-          <p className="mt-1 text-[13px] text-muted">Essayez un autre mot-clé</p>
+          <span className="text-5xl">ðŸ”</span>
+          <p className="mt-4 text-[15px] font-semibold text-ink">Aucun rÃ©sultat</p>
+          <p className="mt-1 text-[13px] text-muted">Essayez un autre mot-clÃ©</p>
         </div>
       ) : (
-        <div className="px-5 space-y-4 pt-2">
+        <div className="px-5 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 pt-2">
           {results.map((item) => {
             const displayPrice = item.price ?? item.sizes?.[0]?.price ?? 0;
             return (
@@ -100,9 +100,9 @@ export default function SearchPage({ onOpenItem }) {
                   <p className="text-[12px] text-muted mt-0.5 line-clamp-1">{item.description}</p>
                   <div className="mt-2 flex items-center gap-3">
                     <span className="text-[13px] font-semibold text-primary">{FCFA(displayPrice)}</span>
-                    <span className="text-muted">•</span>
+                    <span className="text-muted">â€¢</span>
                     <span className="text-[12px] text-muted">30-50 min</span>
-                    <span className="text-muted">•</span>
+                    <span className="text-muted">â€¢</span>
                     <div className="flex items-center gap-1">
                       <svg width="12" height="12" viewBox="0 0 24 24" fill="#FFB800"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
                       <span className="text-[12px] font-semibold text-ink">9.2</span>
@@ -117,3 +117,4 @@ export default function SearchPage({ onOpenItem }) {
     </div>
   );
 }
+

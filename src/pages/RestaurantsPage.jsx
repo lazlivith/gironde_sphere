@@ -1,4 +1,4 @@
-/* RestaurantsPage.jsx — Restaurants screen (Figma faithful) */
+﻿/* RestaurantsPage.jsx â€” Restaurants screen (Figma faithful) */
 import { useState } from "react";
 import menu from "../data/menu.json";
 import { StatusBar, StarRating, FCFA } from "../components/ui/ui";
@@ -17,8 +17,8 @@ const RESTAURANTS = [
     description: menu.tagline,
     rating: menu.rating,
     deliveryTime: menu.deliveryTime,
-    priceRange: "€€",
-    emoji: "🏠",
+    priceRange: "â‚¬â‚¬",
+    emoji: "ðŸ ",
     featured: true,
     categories: menu.categories,
   },
@@ -79,7 +79,7 @@ export default function RestaurantsPage({ onOpenRestaurant }) {
       {/* Categories */}
       <div className="px-5">
         <div className="flex items-center justify-between mb-3">
-          <h2 className="font-display text-[16px] font-bold text-ink">Catégories</h2>
+          <h2 className="font-display text-[16px] font-bold text-ink">CatÃ©gories</h2>
           <button className="rounded-full bg-primary/10 px-3 py-1 text-[12px] font-semibold text-primary">Voir tout</button>
         </div>
         <div className="flex gap-3 overflow-x-auto no-scrollbar -mx-1 px-1">
@@ -116,9 +116,9 @@ export default function RestaurantsPage({ onOpenRestaurant }) {
                 <p className="mt-0.5 text-[12px] text-muted line-clamp-1">{r.description}</p>
                 <div className="mt-2 flex items-center gap-3">
                   <StarRating value={r.rating} />
-                  <span className="text-[11px] text-muted">•</span>
+                  <span className="text-[11px] text-muted">â€¢</span>
                   <span className="text-[12px] text-muted">{r.priceRange}</span>
-                  <span className="text-[11px] text-muted">•</span>
+                  <span className="text-[11px] text-muted">â€¢</span>
                   <span className="flex items-center gap-1 text-[12px] text-muted">
                     <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#FF6B2C" strokeWidth="2" strokeLinecap="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
                     {r.deliveryTime}
@@ -132,3 +132,4 @@ export default function RestaurantsPage({ onOpenRestaurant }) {
     </div>
   );
 }
+
