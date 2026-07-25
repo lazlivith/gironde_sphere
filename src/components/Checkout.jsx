@@ -90,10 +90,8 @@ export default function Checkout({ onBack }) {
   };
 
   return (
-    <div className="flex flex-col h-full w-full bg-white">
-      {/* Scrollable Content */}
-      <div className="flex-1 overflow-y-auto pb-8">
-        {/* Header */}
+    <div className="min-h-full w-full bg-white relative">
+      {/* Header */}
       <div className="flex items-center justify-between px-5 pt-14 pb-4">
         <BackButton onClick={onBack} />
         <h2 className="font-display text-[17px] font-semibold text-ink">Livraison</h2>
@@ -175,10 +173,9 @@ export default function Checkout({ onBack }) {
           </div>
         </div>
       </form>
-      </div>
 
       {/* CTA */}
-      <div className="flex-shrink-0 w-full bg-white px-5 py-4 shadow-[0_-10px_30px_rgba(0,0,0,0.06)] border-t border-gray-100 z-40">
+      <div className="sticky bottom-0 w-full bg-white px-5 py-4 shadow-[0_-10px_30px_rgba(0,0,0,0.06)] border-t border-gray-100 z-40">
         <button
           onClick={handleSubmit}
           disabled={!canSubmit}

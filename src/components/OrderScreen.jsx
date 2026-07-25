@@ -19,11 +19,9 @@ export default function OrderScreen({ onBack, onCheckout }) {
   const suggestions = [...upsellCandidates].sort(() => 0.5 - Math.random()).slice(0, 3);
 
   return (
-    <div className="flex flex-col h-full w-full bg-white">
-      {/* Scrollable Content */}
-      <div className="flex-1 overflow-y-auto pb-8">
-        {/* Header */}
-        <div className="flex items-center justify-between px-5 pt-14 pb-4">
+    <div className="min-h-full w-full bg-white relative">
+      {/* Header */}
+      <div className="flex items-center justify-between px-5 pt-14 pb-4">
         <BackButton onClick={onBack} />
         <h2 className="font-display text-[17px] font-semibold text-ink">Votre commande</h2>
         <div className="w-9" />
@@ -121,7 +119,7 @@ export default function OrderScreen({ onBack, onCheckout }) {
       </div>
 
       {lines.length > 0 && (
-        <div className="flex-shrink-0 w-full bg-white px-5 py-4 shadow-[0_-10px_30px_rgba(0,0,0,0.06)] border-t border-gray-100 z-40">
+        <div className="sticky bottom-0 w-full bg-white px-5 py-4 shadow-[0_-10px_30px_rgba(0,0,0,0.06)] border-t border-gray-100 z-40">
           <button
             onClick={onCheckout}
             className="flex w-full items-center justify-between rounded-full bg-primary px-6 py-4 text-[15px] font-bold text-white shadow-lg shadow-primary/30"

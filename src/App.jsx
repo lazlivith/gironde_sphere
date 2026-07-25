@@ -66,7 +66,7 @@ function Shell() {
     switch (modal) {
       case "restaurant":
         return (
-          <div className="absolute inset-0 z-30 bg-white flex flex-col animate-slide-up">
+          <div className="absolute inset-0 z-30 bg-white overflow-y-auto animate-slide-up">
             <RestaurantDetail
               restaurant={selectedRestaurant}
               onBack={closeModal}
@@ -76,7 +76,7 @@ function Shell() {
         );
       case "detail":
         return (
-          <div className="absolute inset-0 z-30 bg-white flex flex-col animate-slide-up">
+          <div className="absolute inset-0 z-30 bg-white overflow-y-auto animate-slide-up pb-[68px]">
             <Detail
               item={selectedItem}
               onBack={closeModal}
@@ -86,19 +86,19 @@ function Shell() {
         );
       case "order":
         return (
-          <div className="absolute inset-0 z-30 bg-white flex flex-col animate-slide-up">
+          <div className="absolute inset-0 z-30 bg-white overflow-y-auto animate-slide-up pb-[68px]">
             <OrderScreen onBack={closeModal} onCheckout={() => setModal("checkout")} />
           </div>
         );
       case "checkout":
         return (
-          <div className="absolute inset-0 z-30 bg-white flex flex-col animate-slide-up">
+          <div className="absolute inset-0 z-30 bg-white overflow-y-auto animate-slide-up pb-[68px]">
             <Checkout onBack={() => setModal("order")} />
           </div>
         );
       case "history":
         return (
-          <div className="absolute inset-0 z-30 bg-white flex flex-col animate-slide-up">
+          <div className="absolute inset-0 z-30 bg-white overflow-y-auto animate-slide-up pb-[68px]">
             <HistoryScreen onBack={closeModal} onReorder={() => setModal("order")} />
           </div>
         );
